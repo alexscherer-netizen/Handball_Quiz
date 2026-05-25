@@ -390,9 +390,9 @@ const ALL_QUESTIONS = [
     fact:"Die SAP Arena in Mannheim fasst über 13.000 Zuschauer und gilt als eine der modernsten Mehrzweckhallen Europas." },
 
   { cat:"Teams & Städte", diff:"mittel",
-    q:"Welcher HBL-Club trägt die Farben Grün-Weiß und spielt in Wuppertal?",
+    q:"Welcher HBL-Club spielt in Wuppertal und stieg 2025/26 in die Bundesliga auf?",
     answers:[{text:"VfL Gummersbach",correct:false},{text:"Bergischer HC",correct:true},{text:"TBV Lemgo Lippe",correct:false},{text:"ThSV Eisenach",correct:false}],
-    fact:"Der Bergischer HC stieg 2025/26 in die Bundesliga auf und spielt in der Uni-Halle Wuppertal mit rund 3.200 Plätzen." },
+    fact:"Der Bergische HC (BHC) stieg 2025/26 in die Bundesliga auf und spielt in der Uni-Halle Wuppertal sowie der Mitsubishi-Electric-Halle in Düsseldorf. Die Vereinsfarben sind Blau (Heim) und Rot (Auswärts)." },
 
   { cat:"Teams & Städte", diff:"mittel",
     q:"In welcher Stadt liegt die Heimspielstätte des SC DHfK Leipzig?",
@@ -412,7 +412,7 @@ const ALL_QUESTIONS = [
   { cat:"Teams & Städte", diff:"schwer",
     q:"Welcher Verein entstand 2002 aus der Fusion von TSG Kronau und TSV Baden Östringen?",
     answers:[{text:"HC Erlangen",correct:false},{text:"Rhein-Neckar Löwen",correct:true},{text:"HSG Wetzlar",correct:false},{text:"Bergischer HC",correct:false}],
-    fact:"Die Rhein-Neckar Löwen wurden 2002 als SG Kronau/Östringen gegründet und stiegen 2003 direkt in die Bundesliga auf. Die SAP Arena in Mannheim wurde 2005/06 zur neuen Heimat." },
+    fact:"Die Rhein-Neckar Löwen wurden am 1. Juli 2002 als SG Kronau/Östringen gegründet. 2003 stiegen sie in die Bundesliga auf, 2004 folgte der Abstieg, 2005 der sofortige Wiederaufstieg. Ab der Saison 2005/06 spielten sie in der neu eröffneten SAP Arena Mannheim. Den heutigen Namen tragen sie seit 2007." },
 
   // ══ GESCHICHTE & REKORDE ══
   { cat:"Geschichte & Rekorde", diff:"leicht",
@@ -591,7 +591,7 @@ const ALL_QUESTIONS = [
   { cat:"Europa & International", diff:"mittel",
     q:"Welcher HSV-Hamburg-Torhüter half 2013 den Champions-League-Titel zu gewinnen?",
     answers:[{text:"Silvio Heinevetter",correct:false},{text:"Johannes Bitter",correct:true},{text:"Andreas Wolff",correct:false},{text:"Dario Quenstedt",correct:false}],
-    fact:"Johannes Bitter war Stammtorhüter des HSV Hamburg und gewann mit dem Club 2013 die EHF Champions League gegen FC Barcelona nach Verlängerung (35:34)." },
+    fact:"Johannes Bitter war Stammtorhüter des HSV Hamburg und gewann mit dem Club 2013 die EHF Champions League gegen FC Barcelona nach Verlängerung (30:29). Bitter hielt in der Verlängerung den entscheidenden letzten Wurf." },
 
   { cat:"Europa & International", diff:"schwer",
     q:"In welchem Jahr gewann VfL Gummersbach erstmals den Europapokal der Landesmeister?",
@@ -632,7 +632,7 @@ const ALL_QUESTIONS = [
   { cat:"Regelkunde & Taktik", diff:"schwer",
     q:"Was passiert, wenn ein Torhüter beim 7-gegen-6 den Ball außerhalb seines Torraums berührt?",
     answers:[{text:"Freiwurf für den Gegner",correct:false},{text:"Siebenmeter für den Gegner",correct:true},{text:"Gelbe Karte",correct:false},{text:"2-Minuten-Strafe",correct:false}],
-    fact:"Wenn der ausgechselte Torhüter als Feldspieler den Ball außerhalb seines Torraums berührt, wird ein Siebenmeter für den Gegner verhängt – das höchste Risiko des Powerplays." },
+    fact:"Wenn der ausgewechselte Torhüter als Feldspieler den Ball außerhalb seines Torraums berührt, wird ein Siebenmeter für den Gegner verhängt – das höchste Risiko des Powerplays." },
 
   // ══ STADIEN & ATMOSPHÄRE ══
   { cat:"Stadien & Atmosphäre", diff:"mittel",
@@ -670,6 +670,97 @@ const ALL_QUESTIONS = [
     q:"Wann fand das meistbesuchte Handball-Vereinsspiel der Welt statt?",
     answers:[{text:"2009",correct:false},{text:"2012",correct:false},{text:"2014",correct:true},{text:"2017",correct:false}],
     fact:"Am 6. September 2014 sahen 44.189 Zuschauer im Frankfurter Waldstadion das HBL-Spiel Rhein-Neckar Löwen gegen HSV Hamburg – bis heute Weltrekord." },
+
+  // ══ SCHIEDSRICHTER & REGELWERK ══
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+    q:"Was bedeutet eine gelbe Karte im Handball?",
+    answers:[{text:"Sofortige 2-Minuten-Strafe",correct:false},{text:"Verwarnung – Vorstufe zur Zeitstrafe",correct:true},{text:"Disqualifikation für dieses Spiel",correct:false},{text:"Freiwurf für den Gegner",correct:false}],
+    fact:"Die gelbe Karte ist eine formelle Verwarnung. Sie ist die erste Stufe der progressiven Bestrafung und Vorstufe zur 2-Minuten-Strafe. Pro Spieler gibt es nur eine Verwarnung; jede weitere Verfehlung führt direkt zur Hinausstellung." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+    q:"Wie lange dauert eine Hinausstellung (Zeitstrafe) im Handball?",
+    answers:[{text:"1 Minute",correct:false},{text:"2 Minuten",correct:true},{text:"5 Minuten",correct:false},{text:"Bis Halbzeit",correct:false}],
+    fact:"Die Hinausstellung dauert genau 2 Minuten. In dieser Zeit spielt die betroffene Mannschaft in Unterzahl (6 gegen 7), kann aber nach Ablauf der Zeit wieder vollzählig werden." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+    q:"Was bedeutet die rote Karte im Handball?",
+    answers:[{text:"10-Minuten-Strafe",correct:false},{text:"Disqualifikation für den Rest des Spiels",correct:true},{text:"Platzverbot für das nächste Spiel",correct:false},{text:"Freistoß vom Siebenmeterpunkt",correct:false}],
+    fact:"Die rote Karte bedeutet Disqualifikation: Der Spieler muss das Spielfeld und den Auswechselraum verlassen. Die Mannschaft spielt die nächsten 2 Minuten in Unterzahl, kann aber danach einen Ersatzspieler einwechseln." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+    q:"Wie groß ist ein Handballspielfeld laut IHF-Regelwerk?",
+    answers:[{text:"30 m × 15 m",correct:false},{text:"40 m × 20 m",correct:true},{text:"44 m × 22 m",correct:false},{text:"38 m × 18 m",correct:false}],
+    fact:"Ein Handballspielfeld misst exakt 40 Meter in der Länge und 20 Meter in der Breite – weltweit einheitlich festgelegt durch das IHF-Regelwerk." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+    q:"Wie breit und hoch ist ein Handballtor?",
+    answers:[{text:"2 m breit, 1,5 m hoch",correct:false},{text:"3 m breit, 2 m hoch",correct:true},{text:"2,5 m breit, 2 m hoch",correct:false},{text:"3 m breit, 2,5 m hoch",correct:false}],
+    fact:"Ein Handballtor ist genau 3 Meter breit und 2 Meter hoch – diese Maße sind weltweit einheitlich und seit Jahrzehnten unverändert." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+    q:"Wie viele Schritte darf ein Feldspieler mit dem Ball machen, ohne zu dribbeln?",
+    answers:[{text:"2 Schritte",correct:false},{text:"3 Schritte",correct:true},{text:"4 Schritte",correct:false},{text:"Beliebig viele",correct:false}],
+    fact:"Ein Feldspieler darf maximal 3 Schritte mit dem Ball machen, ohne zu dribbeln. Mehr Schritte werden als 'Schrittfehler' gepfiffen und mit Freiwurf für den Gegner geahndet." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Was passiert nach der dritten 2-Minuten-Strafe desselben Spielers?",
+    answers:[{text:"Nur weitere 2 Minuten",correct:false},{text:"Automatische Disqualifikation (Rote Karte)",correct:true},{text:"Spielsperre für das nächste Spiel",correct:false},{text:"Nichts – es gibt keine Begrenzung",correct:false}],
+    fact:"Die dritte 2-Minuten-Strafe desselben Spielers bedeutet automatisch die Disqualifikation (Rote Karte). Die Mannschaft muss danach 2 Minuten in Unterzahl spielen, kann aber dann einen Ersatz einwechseln." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Welche Linie darf nur der Torwart betreten?",
+    answers:[{text:"Die 7-Meter-Linie",correct:false},{text:"Die 9-Meter-Freiwurflinie",correct:false},{text:"Die 6-Meter-Torraumlinie",correct:true},{text:"Die Mittellinie",correct:false}],
+    fact:"Der Torraum (begrenzt durch die 6-Meter-Linie) darf ausschließlich vom Torwart betreten werden. Betritt ein Feldspieler den Torraum im Angriff, gibt es Freiwurf; in der Abwehr einen Siebenmeter für den Gegner." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Wann wird im Handball ein Siebenmeter verhängt?",
+    answers:[{text:"Bei jedem Foul im Angriff",correct:false},{text:"Bei Foul oder illegalem Eingriff mit Verhinderung einer klaren Torchance",correct:true},{text:"Wenn der Ball die Seitenlinie berührt",correct:false},{text:"Nach jeder roten Karte",correct:false}],
+    fact:"Ein Siebenmeter wird verhängt, wenn eine klare Torchance durch einen regelwidrigen Eingriff verhindert wird – z.B. durch ein Foul oder wenn ein Abwehrspieler unerlaubt den Torraum betritt." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Wie viele Schiedsrichter leiten ein Handball-Bundesligaspiel?",
+    answers:[{text:"1",correct:false},{text:"2",correct:true},{text:"3",correct:false},{text:"4",correct:false}],
+    fact:"Jedes Handball-Bundesligaspiel wird von genau 2 gleichberechtigten Schiedsrichtern geleitet. Sie haben dieselben Rechte und Pflichten und treffen Entscheidungen idealerweise gemeinsam." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Wie weit müssen Gegenspieler bei einem Freiwurf mindestens entfernt sein?",
+    answers:[{text:"1 Meter",correct:false},{text:"2 Meter",correct:false},{text:"3 Meter",correct:true},{text:"5 Meter",correct:false}],
+    fact:"Bei einem Freiwurf müssen alle Gegenspieler mindestens 3 Meter vom Ball entfernt sein. Stehen sie näher, kann der Schiedsrichter die Ausführung zurückpfeifen oder eine progressive Strafe verhängen." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Was bedeutet 'passives Spiel' (Zeitspiel) im Handball?",
+    answers:[{text:"Ein Spieler hält den Ball fest ohne Bewegung",correct:false},{text:"Eine Mannschaft greift nicht aktiv an und spielt auf Zeit",correct:true},{text:"Der Torwart verlässt den Torraum nicht",correct:false},{text:"Beide Teams spielen ohne Körperkontakt",correct:false}],
+    fact:"'Passives Spiel' oder Zeitspiel liegt vor, wenn eine Mannschaft keine erkennbare Absicht zeigt, anzugreifen. Der Schiedsrichter warnt zunächst mit erhobenem Arm; folgt keine Reaktion, gibt es Freiwurf für den Gegner." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+    q:"Wie weit darf der Torwart beim Siebenmeter maximal vor der Torlinie stehen, bevor der Ball abgeworfen wird?",
+    answers:[{text:"2 Meter",correct:false},{text:"3 Meter",correct:false},{text:"4 Meter",correct:true},{text:"5 Meter",correct:false}],
+    fact:"Die Torwartgrenzlinie liegt 4 Meter vor der Torlinie. Beim Siebenmeter darf der Torwart diese Linie erst übertreten, wenn der Ball die Hand des Werfers verlassen hat – wer früher vorkommt, riskiert Wiederholung des Wurfs." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+    q:"Was passiert, wenn ein Feldspieler den Ball mit dem Fuß oder Unterschenkel spielt?",
+    answers:[{text:"Gelbe Karte",correct:false},{text:"Freiwurf für den Gegner",correct:true},{text:"Siebenmeter für den Gegner",correct:false},{text:"2-Minuten-Strafe",correct:false}],
+    fact:"Das Spielen des Balls mit dem Fuß oder Unterschenkel ist verboten und wird mit Freiwurf für den Gegner geahndet. Der Torwart darf den Ball im eigenen Torraum jedoch auch mit den Füßen spielen." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+    q:"Wie viele Verwarnungen (gelbe Karten) darf eine Mannschaft insgesamt erhalten?",
+    answers:[{text:"Unbegrenzt",correct:false},{text:"Maximal drei pro Mannschaft",correct:true},{text:"Maximal zwei pro Mannschaft",correct:false},{text:"Maximal fünf pro Mannschaft",correct:false}],
+    fact:"Eine Mannschaft darf insgesamt maximal drei Verwarnungen (gelbe Karten) erhalten. Jede weitere Verwarnung wird direkt als 2-Minuten-Strafe ausgesprochen." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+    q:"Was zeigt der Schiedsrichter mit zwei erhobenen Fingern an?",
+    answers:[{text:"Gelbe Karte",correct:false},{text:"2-Minuten-Strafe (Hinausstellung)",correct:true},{text:"Siebenmeter",correct:false},{text:"Freiwurf",correct:false}],
+    fact:"Zwei erhobene Finger ist das offizielle Schiedsrichterzeichen für die 2-Minuten-Strafe (Hinausstellung). Der Arm wird dabei senkrecht nach oben gestreckt." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+    q:"Darf ein Spieler nach dem Stopp seines Dribblings erneut mit dem Dribbeln beginnen?",
+    answers:[{text:"Ja, einmal",correct:false},{text:"Ja, beliebig oft",correct:false},{text:"Nein, das ist verboten",correct:true},{text:"Nur wenn er vorher gepasst hat",correct:false}],
+    fact:"Stoppt ein Spieler sein Dribbling, darf er nicht erneut dribbeln. Er muss dann passen oder werfen. Doppeldribbling wird mit Freiwurf für den Gegner geahndet." },
+
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+    q:"Was passiert bei einem Unentschieden nach regulärer Spielzeit im DHB-Pokal?",
+    answers:[{text:"Sofortiges Siebenmeterschießen",correct:false},{text:"Verlängerung (2 × 5 Minuten), dann ggf. Siebenmeterschießen",correct:true},{text:"Das Spiel gilt als unentschieden",correct:false},{text:"Münzwurf entscheidet",correct:false}],
+    fact:"Im DHB-Pokal folgen bei Unentschieden nach 60 Minuten zwei Verlängerungen von je 5 Minuten. Steht es danach immer noch gleich, entscheidet ein Siebenmeterschießen (je 5 Würfe, danach abwechselnd)." },
 ];
 
 // ─────────────────────────────────────────────────────────────
