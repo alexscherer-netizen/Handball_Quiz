@@ -7,332 +7,296 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --red: #e8000d;
-    --dark: #0a0a0f;
-    --mid: #12121a;
-    --card: #1a1a26;
-    --border: #2a2a3a;
-    --gold: #f5c518;
-    --green: #00c851;
-    --white: #f0f0f8;
-    --muted: #6a6a8a;
-    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --red:#e8000d; --dark:#0a0a0f; --mid:#12121a; --card:#1a1a26;
+    --border:#2a2a3a; --gold:#f5c518; --green:#00c851; --white:#f0f0f8;
+    --muted:#6a6a8a; --safe-bottom:env(safe-area-inset-bottom,0px);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Barlow', sans-serif;
-    background: var(--dark);
-    color: var(--white);
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
-  }
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% 10%, rgba(232,0,13,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 40% at 80% 80%, rgba(245,197,24,0.06) 0%, transparent 50%);
-    pointer-events: none; z-index: 0;
-  }
-  .container {
-    max-width: 680px; margin: 0 auto;
-    padding: 16px 14px calc(32px + var(--safe-bottom));
-    position: relative; z-index: 1;
-  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{font-family:'Barlow',sans-serif;background:var(--dark);color:var(--white);
+    min-height:100vh;min-height:100dvh;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background:
+    radial-gradient(ellipse 80% 50% at 20% 10%,rgba(232,0,13,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%,rgba(245,197,24,.06) 0%,transparent 50%);
+    pointer-events:none;z-index:0}
+  .container{max-width:700px;margin:0 auto;padding:14px 14px calc(32px + var(--safe-bottom));position:relative;z-index:1}
 
-  /* ── HEADER ── */
-  header { text-align: center; padding: 28px 0 18px; }
-  .league-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--red); color: #fff;
-    font-family: 'Bebas Neue', sans-serif; letter-spacing: 2px; font-size: 12px;
-    padding: 5px 14px; border-radius: 3px; margin-bottom: 12px;
-  }
-  h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(44px, 12vw, 76px);
-    line-height: 0.88; letter-spacing: 3px;
-    text-shadow: 0 0 60px rgba(232,0,13,0.4);
-  }
-  h1 span { color: var(--red); }
-  .subtitle { font-size: 14px; color: var(--muted); margin-top: 10px; letter-spacing: 0.5px; }
+  /* HEADER */
+  header{text-align:center;padding:24px 0 16px}
+  .league-badge{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;
+    font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:12px;
+    padding:5px 14px;border-radius:3px;margin-bottom:12px}
+  h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(42px,12vw,72px);
+    line-height:.88;letter-spacing:3px;text-shadow:0 0 60px rgba(232,0,13,.4)}
+  h1 span{color:var(--red)}
+  .subtitle{font-size:14px;color:var(--muted);margin-top:10px}
 
-  /* ── START SCREEN ── */
-  #start-screen { text-align: center; }
-  .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 18px 0 12px; }
-  .mode-card {
-    background: var(--card); border: 1.5px solid var(--border);
-    border-radius: 10px; padding: 16px 12px; cursor: pointer;
-    transition: border-color .18s, background .18s; text-align: left;
-    -webkit-user-select: none; user-select: none;
-  }
-  .mode-card:active, .mode-card.active {
-    border-color: var(--gold); background: rgba(245,197,24,0.06);
-  }
-  .mode-icon { font-size: 24px; margin-bottom: 7px; display: block; }
-  .mode-title { font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px; color: var(--white); }
-  .mode-desc { font-size: 11px; color: var(--muted); margin-top: 4px; line-height: 1.4; }
+  /* SHARED CARD */
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px}
 
-  .start-info {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 10px; padding: 16px; margin: 12px 0; text-align: left;
-  }
-  .info-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; color: #c0c0d8;
-  }
-  .info-row:last-child { border-bottom: none; }
-  .info-icon { font-size: 16px; width: 22px; text-align: center; flex-shrink: 0; }
-  .start-btn {
-    background: var(--red); color: #fff;
-    font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 4px;
-    border: none; border-radius: 10px; padding: 17px 0; cursor: pointer; width: 100%;
-    transition: background .2s, transform .15s; box-shadow: 0 8px 28px rgba(232,0,13,0.35);
-    touch-action: manipulation;
-  }
-  .start-btn:active { background: #c8000b; transform: scale(0.98); }
+  /* START SCREEN */
+  #start-screen{text-align:center}
+  .main-mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 10px}
+  .mode-card{background:var(--card);border:1.5px solid var(--border);border-radius:10px;
+    padding:16px 12px;cursor:pointer;transition:border-color .18s,background .18s;text-align:left;
+    -webkit-user-select:none;user-select:none;touch-action:manipulation}
+  .mode-card:active,.mode-card.active{border-color:var(--gold);background:rgba(245,197,24,.06)}
+  .mode-icon{font-size:24px;margin-bottom:7px;display:block}
+  .mode-title{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:2px;color:var(--white)}
+  .mode-desc{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
 
-  /* ── QUIZ HEADER BAR ── */
-  .quiz-topbar {
-    display: flex; align-items: center; justify-content: space-between;
-    margin-bottom: 14px; gap: 8px;
-  }
-  .back-btn {
-    background: var(--card); border: 1px solid var(--border);
-    color: var(--muted); font-family: 'Barlow', sans-serif; font-size: 13px; font-weight: 600;
-    padding: 8px 12px; border-radius: 7px; cursor: pointer; transition: all .18s;
-    white-space: nowrap; touch-action: manipulation; flex-shrink: 0;
-  }
-  .back-btn:active { background: rgba(232,0,13,0.12); border-color: var(--red); color: var(--white); }
+  /* CLUB SELECTOR */
+  #club-screen{display:none}
+  .club-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}
+  @media(max-width:400px){.club-grid{grid-template-columns:1fr}}
+  .club-btn{background:var(--mid);border:1.5px solid var(--border);color:var(--white);
+    font-family:'Barlow',sans-serif;font-size:13px;font-weight:700;
+    padding:12px 10px;border-radius:8px;cursor:pointer;text-align:left;
+    transition:border-color .15s,background .15s;touch-action:manipulation;line-height:1.3}
+  .club-btn:active{border-color:var(--red);background:rgba(232,0,13,.1)}
+  .club-btn .club-city{font-size:10px;color:var(--muted);font-weight:400;display:block;margin-top:2px}
+  .club-btn .club-count{font-size:10px;color:var(--gold);font-weight:600;float:right;margin-top:-16px}
 
-  /* ── STATS BAR ── */
-  .stats-bar {
-    display: flex; flex: 1;
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
-  }
-  .stat { flex: 1; padding: 10px 6px; text-align: center; border-right: 1px solid var(--border); }
-  .stat:last-child { border-right: none; }
-  .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); line-height: 1; }
-  .stat-label { font-size: 9px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  /* INFO ROWS */
+  .info-box{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0;text-align:left}
+  .info-row{display:flex;align-items:center;gap:10px;padding:8px 0;
+    border-bottom:1px solid var(--border);font-size:13px;color:#c0c0d8}
+  .info-row:last-child{border-bottom:none}
+  .info-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
 
-  /* ── PROGRESS ── */
-  .progress-wrap { margin-bottom: 14px; }
-  .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-bottom: 7px; }
-  .progress-bar-bg { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
-  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--red), var(--gold)); border-radius: 2px; transition: width .5s ease; }
+  /* BUTTONS */
+  .btn-red{background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;
+    font-size:20px;letter-spacing:3px;border:none;border-radius:10px;
+    padding:15px 0;cursor:pointer;width:100%;transition:background .2s,transform .15s;
+    box-shadow:0 8px 28px rgba(232,0,13,.3);touch-action:manipulation;margin-top:4px}
+  .btn-red:active{background:#c8000b;transform:scale(.98)}
+  .btn-ghost{background:var(--card);color:var(--white);font-family:'Bebas Neue',sans-serif;
+    font-size:18px;letter-spacing:2px;border:1.5px solid var(--border);border-radius:10px;
+    padding:13px 0;cursor:pointer;width:100%;transition:all .18s;touch-action:manipulation;margin-top:8px}
+  .btn-ghost:active{border-color:var(--gold);transform:scale(.98)}
 
-  /* ── QUESTION CARD ── */
-  .question-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 20px 16px; margin-bottom: 12px;
-    position: relative; overflow: hidden;
-  }
-  .question-card::before {
-    content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--red);
-  }
-  .q-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
-  .q-number { font-family: 'Bebas Neue', sans-serif; font-size: 11px; color: var(--muted); letter-spacing: 2px; }
-  .category-tag {
-    font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-    color: var(--gold); border: 1px solid rgba(245,197,24,0.3); padding: 2px 8px; border-radius: 3px;
-  }
-  .diff-tag { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; }
-  .diff-leicht { color: #00c851; border: 1px solid rgba(0,200,81,0.3); }
-  .diff-mittel  { color: #f5a623; border: 1px solid rgba(245,166,35,0.3); }
-  .diff-schwer  { color: #e8000d; border: 1px solid rgba(232,0,13,0.3); }
-  .question-text { font-size: clamp(15px, 4vw, 20px); font-weight: 700; line-height: 1.4; color: var(--white); }
+  /* QUIZ TOPBAR */
+  .quiz-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;gap:8px}
+  .back-btn{background:var(--card);border:1px solid var(--border);color:var(--muted);
+    font-family:'Barlow',sans-serif;font-size:12px;font-weight:600;
+    padding:8px 10px;border-radius:7px;cursor:pointer;white-space:nowrap;
+    touch-action:manipulation;flex-shrink:0}
+  .back-btn:active{background:rgba(232,0,13,.12);border-color:var(--red);color:var(--white)}
 
-  /* ── ANSWERS ── */
-  .answers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
-  .answer-btn {
-    background: var(--mid); border: 1.5px solid var(--border);
-    color: var(--white); font-family: 'Barlow', sans-serif;
-    font-size: clamp(13px, 3.5vw, 15px); font-weight: 600;
-    padding: 13px 12px; border-radius: 8px; cursor: pointer; text-align: left;
-    transition: border-color .15s, background .15s; line-height: 1.3;
-    touch-action: manipulation; -webkit-user-select: none; user-select: none;
-    min-height: 56px; display: flex; flex-direction: column; justify-content: center;
-  }
-  .answer-btn .letter-label {
-    font-family: 'Bebas Neue', sans-serif; font-size: 10px; letter-spacing: 1px;
-    color: var(--muted); display: block; margin-bottom: 3px;
-  }
-  .answer-btn:not(:disabled):active { border-color: var(--red); background: rgba(232,0,13,0.1); transform: scale(0.98); }
-  .answer-btn.state-correct { border-color: var(--green) !important; background: rgba(0,200,81,0.14) !important; color: var(--green) !important; }
-  .answer-btn.state-wrong   { border-color: var(--red)   !important; background: rgba(232,0,13,0.14) !important; color: #ff6b6b !important; }
-  .answer-btn.state-reveal  { border-color: var(--green) !important; background: rgba(0,200,81,0.05) !important; color: rgba(0,200,81,0.8) !important; }
+  /* STATS BAR */
+  .stats-bar{display:flex;flex:1;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .stat{flex:1;padding:9px 6px;text-align:center;border-right:1px solid var(--border)}
+  .stat:last-child{border-right:none}
+  .stat-num{font-family:'Bebas Neue',sans-serif;font-size:21px;color:var(--gold);line-height:1}
+  .stat-label{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 
-  /* ── FEEDBACK ── */
-  .feedback {
-    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
-    padding: 13px 16px; margin-bottom: 12px; display: none;
-    font-size: 13px; line-height: 1.65; color: #b0b0cc;
-  }
-  .feedback.visible { display: block; }
-  .feedback strong { color: var(--white); font-size: 14px; }
-  .feedback.fb-correct { border-left: 3px solid var(--green); }
-  .feedback.fb-wrong   { border-left: 3px solid var(--red); }
+  /* PROGRESS */
+  .progress-wrap{margin-bottom:12px}
+  .progress-info{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+  .progress-bar-bg{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+  .progress-bar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));
+    border-radius:2px;transition:width .5s ease}
 
-  /* ── NEXT BTN ── */
-  .next-btn {
-    display: none; width: 100%; background: var(--red); color: #fff;
-    font-family: 'Bebas Neue', sans-serif; font-size: 19px; letter-spacing: 3px;
-    border: none; border-radius: 10px; padding: 15px; cursor: pointer;
-    transition: background .2s, transform .15s; touch-action: manipulation;
-  }
-  .next-btn:active { background: #c8000b; transform: scale(0.98); }
-  .next-btn.visible { display: block; }
+  /* QUESTION */
+  .question-card{background:var(--card);border:1px solid var(--border);border-radius:12px;
+    padding:18px 18px 14px;margin-bottom:10px;position:relative;overflow:hidden}
+  .question-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--red)}
+  .q-meta{display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap}
+  .q-number{font-family:'Bebas Neue',sans-serif;font-size:11px;color:var(--muted);letter-spacing:2px}
+  .category-tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+    color:var(--gold);border:1px solid rgba(245,197,24,.3);padding:2px 8px;border-radius:3px}
+  .diff-tag{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:3px}
+  .diff-leicht{color:#00c851;border:1px solid rgba(0,200,81,.3)}
+  .diff-mittel{color:#f5a623;border:1px solid rgba(245,166,35,.3)}
+  .diff-schwer{color:#e8000d;border:1px solid rgba(232,0,13,.3)}
+  .question-text{font-size:clamp(15px,4vw,20px);font-weight:700;line-height:1.4;color:var(--white)}
 
-  /* ── RESULT SCREEN ── */
-  #result-screen { display: none; text-align: center; padding: 8px 0; }
-  .result-medal { font-size: 70px; display: block; margin-bottom: 12px; animation: bounce .6s ease; }
-  @keyframes bounce { 0%,100%{transform:scale(1)} 50%{transform:scale(1.14)} }
-  .result-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(34px,10vw,58px); letter-spacing: 3px; margin-bottom: 6px; }
-  .result-score-big { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px,13vw,86px); color: var(--gold); line-height: 1; text-shadow: 0 0 40px rgba(245,197,24,0.5); }
-  .result-sub { color: var(--muted); font-size: 13px; margin-top: 5px; }
-  .result-breakdown { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin: 16px 0; text-align: left; }
-  .breakdown-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
-  .breakdown-row:last-child { border-bottom: none; }
-  .bd-correct { color: var(--green); font-weight: 700; }
-  .bd-wrong   { color: #ff6b6b; font-weight: 700; }
-  .missed-list { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin: 12px 0; text-align: left; }
-  .missed-title { font-family: 'Bebas Neue', sans-serif; font-size: 15px; letter-spacing: 2px; color: var(--muted); margin-bottom: 10px; }
-  .missed-item { padding: 9px 0; border-bottom: 1px solid var(--border); font-size: 12px; color: #a0a0c0; line-height: 1.5; }
-  .missed-item:last-child { border-bottom: none; }
-  .missed-item strong { color: var(--green); }
-  .result-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
-  .restart-btn {
-    background: var(--red); color: #fff;
-    font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px;
-    border: none; border-radius: 10px; padding: 15px 8px; cursor: pointer;
-    transition: background .2s, transform .15s; touch-action: manipulation;
-  }
-  .restart-btn:active { background: #c8000b; transform: scale(0.98); }
-  .menu-btn {
-    background: var(--card); color: var(--white);
-    font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px;
-    border: 1.5px solid var(--border); border-radius: 10px; padding: 15px 8px; cursor: pointer;
-    transition: all .2s; touch-action: manipulation;
-  }
-  .menu-btn:active { border-color: var(--gold); transform: scale(0.98); }
+  /* ANSWERS */
+  .answers-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+  .answer-btn{background:var(--mid);border:1.5px solid var(--border);color:var(--white);
+    font-family:'Barlow',sans-serif;font-size:clamp(13px,3.5vw,15px);font-weight:600;
+    padding:12px 12px;border-radius:8px;cursor:pointer;text-align:left;
+    transition:border-color .15s,background .15s;line-height:1.3;
+    touch-action:manipulation;-webkit-user-select:none;user-select:none;
+    min-height:54px;display:flex;flex-direction:column;justify-content:center}
+  .answer-btn .letter-label{font-family:'Bebas Neue',sans-serif;font-size:10px;
+    letter-spacing:1px;color:var(--muted);display:block;margin-bottom:3px}
+  .answer-btn:not(:disabled):active{border-color:var(--red);background:rgba(232,0,13,.1);transform:scale(.98)}
+  .answer-btn.state-correct{border-color:var(--green)!important;background:rgba(0,200,81,.14)!important;color:var(--green)!important}
+  .answer-btn.state-wrong{border-color:var(--red)!important;background:rgba(232,0,13,.14)!important;color:#ff6b6b!important}
+  .answer-btn.state-reveal{border-color:var(--green)!important;background:rgba(0,200,81,.05)!important;color:rgba(0,200,81,.8)!important}
 
-  /* ── CONFIRM DIALOG ── */
-  .overlay {
-    display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7);
-    z-index: 100; align-items: center; justify-content: center; padding: 20px;
-  }
-  .overlay.visible { display: flex; }
-  .dialog {
-    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
-    padding: 28px 24px; max-width: 340px; width: 100%; text-align: center;
-  }
-  .dialog h3 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; margin-bottom: 10px; }
-  .dialog p { font-size: 14px; color: var(--muted); margin-bottom: 22px; line-height: 1.5; }
-  .dialog-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .dlg-cancel {
-    background: var(--mid); color: var(--white); border: 1px solid var(--border);
-    font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px;
-    border-radius: 8px; padding: 13px; cursor: pointer; touch-action: manipulation;
-  }
-  .dlg-confirm {
-    background: var(--red); color: #fff; border: none;
-    font-family: 'Bebas Neue', sans-serif; font-size: 17px; letter-spacing: 2px;
-    border-radius: 8px; padding: 13px; cursor: pointer; touch-action: manipulation;
-  }
+  /* FEEDBACK */
+  .feedback{background:var(--card);border:1px solid var(--border);border-radius:8px;
+    padding:12px 15px;margin-bottom:10px;display:none;
+    font-size:13px;line-height:1.65;color:#b0b0cc}
+  .feedback.visible{display:block}
+  .feedback strong{color:var(--white);font-size:14px}
+  .feedback.fb-correct{border-left:3px solid var(--green)}
+  .feedback.fb-wrong{border-left:3px solid var(--red)}
 
-  .screen { animation: fadeIn .3s ease; }
-  @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-  #quiz-anchor { scroll-margin-top: 0; }
+  /* NEXT BTN */
+  .next-btn{display:none;width:100%;background:var(--red);color:#fff;
+    font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:3px;
+    border:none;border-radius:10px;padding:14px;cursor:pointer;
+    transition:background .2s,transform .15s;touch-action:manipulation}
+  .next-btn:active{background:#c8000b;transform:scale(.98)}
+  .next-btn.visible{display:block}
+
+  /* RESULT */
+  #result-screen{display:none;text-align:center;padding:8px 0}
+  .result-medal{font-size:68px;display:block;margin-bottom:12px;animation:bounce .6s ease}
+  @keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.14)}}
+  .result-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(32px,10vw,56px);letter-spacing:3px;margin-bottom:6px}
+  .result-score-big{font-family:'Bebas Neue',sans-serif;font-size:clamp(46px,13vw,84px);
+    color:var(--gold);line-height:1;text-shadow:0 0 40px rgba(245,197,24,.5)}
+  .result-sub{color:var(--muted);font-size:13px;margin-top:5px}
+  .result-breakdown{background:var(--card);border:1px solid var(--border);border-radius:10px;
+    padding:16px;margin:14px 0;text-align:left}
+  .breakdown-row{display:flex;justify-content:space-between;align-items:center;
+    padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
+  .breakdown-row:last-child{border-bottom:none}
+  .bd-correct{color:var(--green);font-weight:700}
+  .bd-wrong{color:#ff6b6b;font-weight:700}
+  .missed-list{background:var(--card);border:1px solid var(--border);border-radius:10px;
+    padding:16px;margin:10px 0;text-align:left}
+  .missed-title{font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:2px;color:var(--muted);margin-bottom:10px}
+  .missed-item{padding:8px 0;border-bottom:1px solid var(--border);font-size:12px;color:#a0a0c0;line-height:1.5}
+  .missed-item:last-child{border-bottom:none}
+  .missed-item strong{color:var(--green)}
+  .result-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+  .btn-result-menu{background:var(--card);color:var(--white);font-family:'Bebas Neue',sans-serif;
+    font-size:16px;letter-spacing:2px;border:1.5px solid var(--border);border-radius:10px;
+    padding:14px 8px;cursor:pointer;touch-action:manipulation}
+  .btn-result-menu:active{border-color:var(--gold)}
+  .btn-result-replay{background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;
+    font-size:16px;letter-spacing:2px;border:none;border-radius:10px;
+    padding:14px 8px;cursor:pointer;touch-action:manipulation}
+  .btn-result-replay:active{background:#c8000b}
+
+  /* ABORT DIALOG */
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);
+    z-index:100;align-items:center;justify-content:center;padding:20px}
+  .overlay.visible{display:flex}
+  .dialog{background:var(--card);border:1px solid var(--border);border-radius:14px;
+    padding:26px 22px;max-width:340px;width:100%;text-align:center}
+  .dialog h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:10px}
+  .dialog p{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+  .dialog-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .dlg-cancel{background:var(--mid);color:var(--white);border:1px solid var(--border);
+    font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;
+    border-radius:8px;padding:12px;cursor:pointer;touch-action:manipulation}
+  .dlg-confirm{background:var(--red);color:#fff;border:none;
+    font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:2px;
+    border-radius:8px;padding:12px;cursor:pointer;touch-action:manipulation}
+
+  .screen{animation:fadeIn .3s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  #quiz-anchor{scroll-margin-top:0}
+  .section-label{font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:3px;
+    color:var(--muted);margin:16px 0 8px;text-align:left}
 </style>
 </head>
 <body>
 <div class="container">
-  <header>
-    <div class="league-badge">🤾 HANDBALL-BUNDESLIGA</div>
-    <h1>HBL<br><span>QUIZ</span></h1>
-    <p class="subtitle">Teste dein Wissen über Deutschlands Handballelite</p>
-  </header>
+<header>
+  <div class="league-badge">🤾 HANDBALL-BUNDESLIGA</div>
+  <h1>HBL<br><span>QUIZ</span></h1>
+  <p class="subtitle">Teste dein Wissen über Deutschlands Handballelite</p>
+</header>
 
-  <!-- START -->
-  <div id="start-screen" class="screen">
-    <div class="mode-grid">
-      <div class="mode-card active" onclick="selectMode('kurz')" id="mode-kurz">
-        <span class="mode-icon">⚡</span>
-        <div class="mode-title">Kurz</div>
-        <div class="mode-desc">15 Fragen – schnelle Runde</div>
-      </div>
-      <div class="mode-card" onclick="selectMode('klassisch')" id="mode-klassisch">
-        <span class="mode-icon">🏆</span>
-        <div class="mode-title">Klassisch</div>
-        <div class="mode-desc">25 Fragen – volle Erfahrung</div>
-      </div>
-      <div class="mode-card" onclick="selectMode('profi')" id="mode-profi">
-        <span class="mode-icon">🔥</span>
-        <div class="mode-title">Profi</div>
-        <div class="mode-desc">40 Fragen – für Kenner</div>
-      </div>
-      <div class="mode-card" onclick="selectMode('alle')" id="mode-alle">
-        <span class="mode-icon">💯</span>
-        <div class="mode-title">Alle</div>
-        <div class="mode-desc">Komplette Datenbank</div>
-      </div>
+<!-- ══ HAUPTMENÜ ══ -->
+<div id="start-screen" class="screen">
+  <div class="section-label">⚡ ALLGEMEINES QUIZ</div>
+  <div class="main-mode-grid">
+    <div class="mode-card active" onclick="selectMode('kurz')" id="mode-kurz">
+      <span class="mode-icon">⚡</span>
+      <div class="mode-title">Kurz</div>
+      <div class="mode-desc">15 Fragen – schnelle Runde</div>
     </div>
-    <div class="start-info">
-      <div class="info-row"><span class="info-icon">📅</span> Fragen aus mehreren Jahrzehnten HBL-Geschichte</div>
-      <div class="info-row"><span class="info-icon">🎯</span> 3 Schwierigkeitsstufen: Leicht · Mittel · Schwer</div>
-      <div class="info-row"><span class="info-icon">⚡</span> Antworten bei jeder Runde neu gemischt</div>
-      <div class="info-row"><span class="info-icon">📖</span> Erklärung nach jeder Frage</div>
+    <div class="mode-card" onclick="selectMode('klassisch')" id="mode-klassisch">
+      <span class="mode-icon">🏆</span>
+      <div class="mode-title">Klassisch</div>
+      <div class="mode-desc">25 Fragen – volle Erfahrung</div>
     </div>
-    <button class="start-btn" onclick="startQuiz()">QUIZ STARTEN</button>
-  </div>
-
-  <!-- QUIZ -->
-  <div id="quiz-screen" style="display:none;" class="screen">
-    <div id="quiz-anchor"></div>
-    <div class="quiz-topbar">
-      <button class="back-btn" onclick="confirmAbort()">← ABBRECHEN</button>
-      <div class="stats-bar">
-        <div class="stat"><div class="stat-num" id="score-display">0</div><div class="stat-label">Punkte</div></div>
-        <div class="stat"><div class="stat-num" id="q-current">1</div><div class="stat-label">Frage</div></div>
-        <div class="stat"><div class="stat-num" id="q-total">25</div><div class="stat-label">Gesamt</div></div>
-        <div class="stat"><div class="stat-num" id="streak-display">0</div><div class="stat-label">Serie🔥</div></div>
-      </div>
+    <div class="mode-card" onclick="selectMode('profi')" id="mode-profi">
+      <span class="mode-icon">🔥</span>
+      <div class="mode-title">Profi</div>
+      <div class="mode-desc">40 Fragen – für Kenner</div>
     </div>
-    <div class="progress-wrap">
-      <div class="progress-info">
-        <span id="prog-text">Frage 1 von 25</span>
-        <span id="prog-pct">0%</span>
-      </div>
-      <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
-    </div>
-    <div class="question-card">
-      <div class="q-meta">
-        <div class="q-number" id="q-num-label">FRAGE 01</div>
-        <div class="category-tag" id="category-tag">Kategorie</div>
-        <div class="diff-tag" id="diff-tag">Leicht</div>
-      </div>
-      <div class="question-text" id="question-text">Laden...</div>
-    </div>
-    <div class="answers-grid" id="answers-grid"></div>
-    <div class="feedback" id="feedback"></div>
-    <button class="next-btn" id="next-btn" onclick="nextQuestion()">WEITER →</button>
-  </div>
-
-  <!-- RESULT -->
-  <div id="result-screen" class="screen">
-    <span class="result-medal" id="result-medal">🏆</span>
-    <div class="result-title" id="result-title">VOLLPROFI!</div>
-    <div class="result-score-big" id="result-score">0/25</div>
-    <div class="result-sub" id="result-pct">0% richtig</div>
-    <div class="result-breakdown" id="result-breakdown"></div>
-    <div class="missed-list" id="missed-list" style="display:none;"></div>
-    <div class="result-btns">
-      <button class="menu-btn" onclick="goToMenu()">🏠 MENÜ</button>
-      <button class="restart-btn" onclick="restartQuiz()">🔄 NOCHMAL</button>
+    <div class="mode-card" onclick="selectMode('alle')" id="mode-alle">
+      <span class="mode-icon">💯</span>
+      <div class="mode-title">Alle</div>
+      <div class="mode-desc">Komplette Datenbank</div>
     </div>
   </div>
+  <button class="btn-red" onclick="startGeneralQuiz()">QUIZ STARTEN</button>
+
+  <div class="section-label">🏟️ VEREINS-QUIZ</div>
+  <button class="btn-ghost" onclick="showClubScreen()">🔍 VEREIN AUSWÄHLEN</button>
+
+  <div class="info-box" style="margin-top:14px">
+    <div class="info-row"><span class="info-icon">📅</span> Fragen aus mehreren Jahrzehnten HBL-Geschichte</div>
+    <div class="info-row"><span class="info-icon">🎯</span> 3 Schwierigkeitsstufen: Leicht · Mittel · Schwer</div>
+    <div class="info-row"><span class="info-icon">🏟️</span> Vereins-Quiz für alle 18 Bundesligisten</div>
+    <div class="info-row"><span class="info-icon">📖</span> Erklärung nach jeder Frage</div>
+  </div>
+</div>
+
+<!-- ══ VEREINSAUSWAHL ══ -->
+<div id="club-screen" style="display:none" class="screen">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+    <button class="back-btn" onclick="showStartScreen()">← ZURÜCK</button>
+    <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px">VEREIN WÄHLEN</span>
+  </div>
+  <div class="club-grid" id="club-grid"></div>
+</div>
+
+<!-- ══ QUIZ ══ -->
+<div id="quiz-screen" style="display:none" class="screen">
+  <div id="quiz-anchor"></div>
+  <div class="quiz-topbar">
+    <button class="back-btn" onclick="confirmAbort()">← ABBRECHEN</button>
+    <div class="stats-bar">
+      <div class="stat"><div class="stat-num" id="score-display">0</div><div class="stat-label">Punkte</div></div>
+      <div class="stat"><div class="stat-num" id="q-current">1</div><div class="stat-label">Frage</div></div>
+      <div class="stat"><div class="stat-num" id="q-total">25</div><div class="stat-label">Gesamt</div></div>
+      <div class="stat"><div class="stat-num" id="streak-display">0</div><div class="stat-label">Serie🔥</div></div>
+    </div>
+  </div>
+  <div class="progress-wrap">
+    <div class="progress-info">
+      <span id="prog-text">Frage 1 von 25</span>
+      <span id="prog-pct">0%</span>
+    </div>
+    <div class="progress-bar-bg"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+  <div class="question-card">
+    <div class="q-meta">
+      <div class="q-number" id="q-num-label">FRAGE 01</div>
+      <div class="category-tag" id="category-tag">Kategorie</div>
+      <div class="diff-tag" id="diff-tag">Leicht</div>
+    </div>
+    <div class="question-text" id="question-text">Laden...</div>
+  </div>
+  <div class="answers-grid" id="answers-grid"></div>
+  <div class="feedback" id="feedback"></div>
+  <button class="next-btn" id="next-btn" onclick="nextQuestion()">WEITER →</button>
+</div>
+
+<!-- ══ ERGEBNIS ══ -->
+<div id="result-screen" class="screen">
+  <span class="result-medal" id="result-medal">🏆</span>
+  <div class="result-title" id="result-title">VOLLPROFI!</div>
+  <div class="result-score-big" id="result-score">0/25</div>
+  <div class="result-sub" id="result-pct">0% richtig</div>
+  <div class="result-breakdown" id="result-breakdown"></div>
+  <div class="missed-list" id="missed-list" style="display:none"></div>
+  <div class="result-btns">
+    <button class="btn-result-menu" onclick="goToMenu()">🏠 MENÜ</button>
+    <button class="btn-result-replay" onclick="replayQuiz()">🔄 NOCHMAL</button>
+  </div>
+</div>
 </div>
 
 <!-- ABORT DIALOG -->
@@ -348,435 +312,667 @@
 </div>
 
 <script>
-// ─────────────────────────────────────────────────────────────
-// FRAGENDATENBANK – alle Fakten verifiziert
-// ─────────────────────────────────────────────────────────────
-const ALL_QUESTIONS = [
+// ═══════════════════════════════════════════════════════════════
+// FRAGENDATENBANK – alle Fakten recherchiert und verifiziert
+// ═══════════════════════════════════════════════════════════════
+const GENERAL_QUESTIONS = [
 
   // ══ TEAMS & STÄDTE ══
-  { cat:"Teams & Städte", diff:"leicht",
+  { cat:"Teams & Städte", diff:"leicht", club:null,
     q:"In welcher Stadt ist der THW Kiel beheimatet?",
     answers:[{text:"Kiel",correct:true},{text:"Hamburg",correct:false},{text:"Lübeck",correct:false},{text:"Flensburg",correct:false}],
-    fact:"THW Kiel spielt in der Wunderino Arena und ist mit über 20 Deutschen Meisterschaften der absolute Rekordmeister der Bundesliga." },
+    fact:"THW Kiel spielt in der Wunderino Arena und ist mit 23 Deutschen Meisterschaften der absolute Rekordmeister der Bundesliga." },
 
-  { cat:"Teams & Städte", diff:"leicht",
+  { cat:"Teams & Städte", diff:"leicht", club:null,
     q:"Wie lautet der Spitzname der SG Flensburg-Handewitt?",
     answers:[{text:"Die Löwen",correct:false},{text:"Die Roten Teufel",correct:false},{text:"Die Recken",correct:false},{text:"Die Wikinger",correct:true}],
     fact:"Der Beiname 'Wikinger' passt zur nordischen Grenzregion zwischen Deutschland und Dänemark, in der der Club beheimatet ist." },
 
-  { cat:"Teams & Städte", diff:"leicht",
+  { cat:"Teams & Städte", diff:"leicht", club:null,
     q:"Welches Team spielt in der Max-Schmeling-Halle in Berlin?",
     answers:[{text:"SC Magdeburg",correct:false},{text:"Füchse Berlin",correct:true},{text:"TSV Hannover-Burgdorf",correct:false},{text:"MT Melsungen",correct:false}],
-    fact:"Die Füchse Berlin spielen in der Max-Schmeling-Halle mit Platz für bis zu 9.000 Zuschauer und gewannen 2024/25 die Deutsche Meisterschaft." },
+    fact:"Die Füchse Berlin spielen in der Max-Schmeling-Halle – von den Fans liebevoll 'Fuchsbau' genannt. Die Halle fasst bis zu 9.000 Zuschauer." },
 
-  { cat:"Teams & Städte", diff:"leicht",
+  { cat:"Teams & Städte", diff:"leicht", club:null,
     q:"Welcher Verein trägt den Beinamen 'Die Recken'?",
     answers:[{text:"THW Kiel",correct:false},{text:"Rhein-Neckar Löwen",correct:false},{text:"TSV Hannover-Burgdorf",correct:true},{text:"VfL Gummersbach",correct:false}],
     fact:"'Recke' ist ein altdeutsches Wort für Krieger oder Held – ein Spitzname, der gut zur hannoverschen Kampfmentalität passt." },
 
-  { cat:"Teams & Städte", diff:"leicht",
+  { cat:"Teams & Städte", diff:"leicht", club:null,
     q:"In welchem Bundesland spielt die MT Melsungen?",
     answers:[{text:"Thüringen",correct:false},{text:"Hessen",correct:true},{text:"Niedersachsen",correct:false},{text:"Bayern",correct:false}],
     fact:"MT Melsungen kommt aus der Kleinstadt Melsungen in Nordhessen und gehört seit Jahrzehnten zur Bundesliga." },
 
-  { cat:"Teams & Städte", diff:"mittel",
+  { cat:"Teams & Städte", diff:"mittel", club:null,
     q:"Welcher Bundesligaverein spielt in der GETEC-Arena?",
     answers:[{text:"SC Magdeburg",correct:true},{text:"HC Erlangen",correct:false},{text:"GWD Minden",correct:false},{text:"TBV Lemgo Lippe",correct:false}],
-    fact:"Die GETEC-Arena in Magdeburg fasst rund 7.000 Zuschauer. Der SC Magdeburg ist einer der erfolgreichsten deutschen Handballclubs." },
+    fact:"Die GETEC-Arena in Magdeburg fasst rund 7.000 Zuschauer. Der SC Magdeburg gewann dort 2021/22 und 2023/24 die Deutsche Meisterschaft." },
 
-  { cat:"Teams & Städte", diff:"mittel",
+  { cat:"Teams & Städte", diff:"mittel", club:null,
     q:"Wo ist die Heimspielstätte der Rhein-Neckar Löwen?",
     answers:[{text:"Heidelberg",correct:false},{text:"Ludwigshafen",correct:false},{text:"SAP Arena Mannheim",correct:true},{text:"Karlsruhe",correct:false}],
-    fact:"Die SAP Arena in Mannheim fasst über 13.000 Zuschauer und gilt als eine der modernsten Mehrzweckhallen Europas." },
+    fact:"Die SAP Arena in Mannheim fasst über 13.000 Zuschauer und gilt als eine der modernsten Multifunktionshallen Europas." },
 
-  { cat:"Teams & Städte", diff:"mittel",
-    q:"Welcher HBL-Club spielt in Wuppertal und stieg 2025/26 in die Bundesliga auf?",
-    answers:[{text:"VfL Gummersbach",correct:false},{text:"Bergischer HC",correct:true},{text:"TBV Lemgo Lippe",correct:false},{text:"ThSV Eisenach",correct:false}],
-    fact:"Der Bergische HC (BHC) stieg 2025/26 in die Bundesliga auf und spielt in der Uni-Halle Wuppertal sowie der Mitsubishi-Electric-Halle in Düsseldorf. Die Vereinsfarben sind Blau (Heim) und Rot (Auswärts)." },
+  { cat:"Teams & Städte", diff:"mittel", club:null,
+    q:"Welcher HBL-Club ist als 'Die Zebras' bekannt?",
+    answers:[{text:"VfL Gummersbach",correct:false},{text:"THW Kiel",correct:true},{text:"TBV Lemgo",correct:false},{text:"MT Melsungen",correct:false}],
+    fact:"THW Kiels ikonisches schwarz-weißes Trikot brachte dem Verein den Spitznamen 'Die Zebras' ein." },
 
-  { cat:"Teams & Städte", diff:"mittel",
-    q:"In welcher Stadt liegt die Heimspielstätte des SC DHfK Leipzig?",
-    answers:[{text:"Halle (Saale)",correct:false},{text:"Dresden",correct:false},{text:"Leipzig",correct:true},{text:"Chemnitz",correct:false}],
-    fact:"SC DHfK Leipzig steht für Deutsche Hochschule für Körperkultur Leipzig. Der Club ist ein Nachfolger des DDR-Bundesliga-Erfolgsvereins." },
-
-  { cat:"Teams & Städte", diff:"schwer",
+  { cat:"Teams & Städte", diff:"schwer", club:null,
     q:"Wie lautet der vollständige Name von 'GWD Minden'?",
     answers:[{text:"Grün-Weiß Dynamo Minden",correct:false},{text:"Grün-Weiß Dankersen Minden",correct:true},{text:"Gut-Weiter Dankersen",correct:false},{text:"Grün-Weiß Deportivo Minden",correct:false}],
     fact:"GWD steht für Grün-Weiß Dankersen – benannt nach dem Mindener Stadtteil Dankersen, in dem der Verein beheimatet ist." },
 
-  { cat:"Teams & Städte", diff:"mittel",
-    q:"Welcher HBL-Club ist als 'Die Zebras' bekannt?",
-    answers:[{text:"VfL Gummersbach",correct:false},{text:"THW Kiel",correct:true},{text:"TBV Lemgo",correct:false},{text:"MT Melsungen",correct:false}],
-    fact:"THW Kiels ikonisches schwarz-weißes Trikot brachte dem Verein den Spitznamen 'Die Zebras' ein. Zur Saison 2025/26 kehrten die klassischen Zebrastreifen sogar aufs Heimtrikot zurück." },
-
-  { cat:"Teams & Städte", diff:"schwer",
+  { cat:"Teams & Städte", diff:"schwer", club:null,
     q:"Welcher Verein entstand 2002 aus der Fusion von TSG Kronau und TSV Baden Östringen?",
     answers:[{text:"HC Erlangen",correct:false},{text:"Rhein-Neckar Löwen",correct:true},{text:"HSG Wetzlar",correct:false},{text:"Bergischer HC",correct:false}],
-    fact:"Die Rhein-Neckar Löwen wurden am 1. Juli 2002 als SG Kronau/Östringen gegründet. 2003 stiegen sie in die Bundesliga auf, 2004 folgte der Abstieg, 2005 der sofortige Wiederaufstieg. Ab der Saison 2005/06 spielten sie in der neu eröffneten SAP Arena Mannheim. Den heutigen Namen tragen sie seit 2007." },
+    fact:"Die Rhein-Neckar Löwen wurden am 1. Juli 2002 als SG Kronau/Östringen gegründet. 2003 stiegen sie in die Bundesliga auf, 2004 folgte der Abstieg, 2005 der sofortige Wiederaufstieg. Ab 2005/06 spielten sie in der SAP Arena, und den heutigen Namen tragen sie seit 2007." },
 
   // ══ GESCHICHTE & REKORDE ══
-  { cat:"Geschichte & Rekorde", diff:"leicht",
+  { cat:"Geschichte & Rekorde", diff:"leicht", club:null,
     q:"Wer ist der Rekordmeister der Handball-Bundesliga?",
     answers:[{text:"SG Flensburg-Handewitt",correct:false},{text:"SC Magdeburg",correct:false},{text:"THW Kiel",correct:true},{text:"VfL Gummersbach",correct:false}],
-    fact:"THW Kiel hat die meisten Deutschen Meisterschaften in der Bundesliga-Geschichte gewonnen – mit 23 Titeln mit Abstand Rekordmeister." },
+    fact:"THW Kiel hat 23 Deutsche Meisterschaften gewonnen – mit Abstand Rekordmeister der Bundesliga." },
 
-  { cat:"Geschichte & Rekorde", diff:"leicht",
+  { cat:"Geschichte & Rekorde", diff:"leicht", club:null,
     q:"In welchem Jahr wurde die eingleisige Handball-Bundesliga eingeführt?",
     answers:[{text:"1966",correct:false},{text:"1972",correct:false},{text:"1978",correct:true},{text:"1982",correct:false}],
     fact:"Die eingleisige Handball-Bundesliga startete zur Saison 1977/78. Vorher gab es zwei Staffeln (Nord und Süd) mit einer anschließenden Meisterrunde." },
 
-  { cat:"Geschichte & Rekorde", diff:"leicht",
+  { cat:"Geschichte & Rekorde", diff:"leicht", club:null,
     q:"Welcher Club gewann die Deutsche Meisterschaft 2024/25?",
     answers:[{text:"SC Magdeburg",correct:false},{text:"THW Kiel",correct:false},{text:"SG Flensburg-Handewitt",correct:false},{text:"Füchse Berlin",correct:true}],
     fact:"Die Füchse Berlin gewannen 2024/25 erstmals die Deutsche Meisterschaft – ein historischer Moment für den Berliner Club." },
 
-  { cat:"Geschichte & Rekorde", diff:"leicht",
-    q:"Wie viele Teams spielen in der Handball-Bundesliga seit der Erweiterung?",
-    answers:[{text:"14",correct:false},{text:"16",correct:false},{text:"18",correct:true},{text:"20",correct:false}],
-    fact:"Seit mehreren Jahren umfasst die Handball-Bundesliga 18 Vereine. Jeder spielt gegen jeden einmal Heim und Auswärts – 34 Spieltage insgesamt." },
-
-  { cat:"Geschichte & Rekorde", diff:"mittel",
+  { cat:"Geschichte & Rekorde", diff:"mittel", club:null,
     q:"Welcher Verein gewann die Meisterschaft 2023/24?",
     answers:[{text:"THW Kiel",correct:false},{text:"SC Magdeburg",correct:true},{text:"SG Flensburg-Handewitt",correct:false},{text:"Füchse Berlin",correct:false}],
     fact:"SC Magdeburg gewann 2023/24 seinen dritten Bundesliga-Titel. In der Saison 2025/26 holte Magdeburg den vierten Meistertitel der Vereinsgeschichte." },
 
-  { cat:"Geschichte & Rekorde", diff:"mittel",
-    q:"Welcher Verein gewann die Meisterschaft 2021/22?",
-    answers:[{text:"THW Kiel",correct:false},{text:"SC Magdeburg",correct:true},{text:"SG Flensburg-Handewitt",correct:false},{text:"Rhein-Neckar Löwen",correct:false}],
-    fact:"SC Magdeburg krönte eine überragende Saison 2021/22 mit der Deutschen Meisterschaft – und ein Jahr später folgte der Champions-League-Titel 2023." },
-
-  { cat:"Geschichte & Rekorde", diff:"mittel",
+  { cat:"Geschichte & Rekorde", diff:"mittel", club:null,
     q:"In welchem Jahr gewann Deutschland zuletzt die Handball-Weltmeisterschaft?",
     answers:[{text:"1998",correct:false},{text:"2007",correct:true},{text:"2011",correct:false},{text:"2015",correct:false}],
     fact:"Deutschland gewann die Handball-WM 2007 im eigenen Land – ein unvergessliches Turnier, das als 'Handball-Märchen' in die Geschichte einging." },
 
-  { cat:"Geschichte & Rekorde", diff:"mittel",
+  { cat:"Geschichte & Rekorde", diff:"mittel", club:null,
     q:"Welche drei Clubs dominierten die Bundesliga von 1978 bis 1991?",
     answers:[{text:"Kiel, Magdeburg, Flensburg",correct:false},{text:"Gummersbach, Großwallstadt, TUSEM Essen",correct:true},{text:"Lemgo, Hamburg, Hannover",correct:false},{text:"Gummersbach, Kiel, Flensburg",correct:false}],
-    fact:"Von 1978 bis zur Saison 1990/91 gelang es ausschließlich VfL Gummersbach, TV Großwallstadt und TUSEM Essen, den Meistertitel in der eingleisigen Bundesliga zu gewinnen." },
+    fact:"Von 1978 bis zur Saison 1990/91 gelang es ausschließlich VfL Gummersbach, TV Großwallstadt und TUSEM Essen, den Meistertitel zu gewinnen." },
 
-  { cat:"Geschichte & Rekorde", diff:"schwer",
+  { cat:"Geschichte & Rekorde", diff:"schwer", club:null,
     q:"Welcher Club war der erste Meister der eingleisigen Bundesliga (1977/78)?",
     answers:[{text:"THW Kiel",correct:false},{text:"VfL Gummersbach",correct:false},{text:"TV Großwallstadt",correct:true},{text:"TUSEM Essen",correct:false}],
     fact:"TV Großwallstadt gewann die allererste eingleisige Bundesliga-Saison 1977/78. Der Club aus Unterfranken wurde insgesamt sechsmal Deutscher Meister." },
 
-  { cat:"Geschichte & Rekorde", diff:"schwer",
-    q:"Welche Saison wurde wegen COVID-19 vorzeitig abgebrochen und THW Kiel per Quote zum Meister erklärt?",
+  { cat:"Geschichte & Rekorde", diff:"schwer", club:null,
+    q:"Welche Saison wurde wegen COVID-19 vorzeitig abgebrochen?",
     answers:[{text:"2018/19",correct:false},{text:"2019/20",correct:true},{text:"2020/21",correct:false},{text:"2021/22",correct:false}],
-    fact:"Die Saison 2019/20 wurde im April 2020 wegen der Corona-Pandemie abgebrochen. THW Kiel führte zu diesem Zeitpunkt die Tabelle an und wurde per Quotienten-Regelung zum Meister erklärt." },
+    fact:"Die Saison 2019/20 wurde im April 2020 abgebrochen. THW Kiel führte zu diesem Zeitpunkt die Tabelle an und wurde per Quotienten-Regelung zum Meister erklärt." },
 
-  { cat:"Geschichte & Rekorde", diff:"schwer",
+  { cat:"Geschichte & Rekorde", diff:"schwer", club:null,
     q:"In welchem Jahr stieg VfL Gummersbach zuletzt aus der Handball-Bundesliga ab?",
     answers:[{text:"2007",correct:false},{text:"2014",correct:false},{text:"Saison 2018/19",correct:true},{text:"Sie stiegen nie ab",correct:false}],
-    fact:"VfL Gummersbach stieg am Ende der Saison 2018/19 erstmals in der Vereinsgeschichte ab – ein Schock für den Traditionsclub. Die Rückkehr gelang schnell, seit 2022 ist Gummersbach wieder erstklassig." },
+    fact:"VfL Gummersbach stieg am Ende der Saison 2018/19 erstmals in der Vereinsgeschichte ab. Die Rückkehr gelang schnell, seit 2022 ist Gummersbach wieder erstklassig." },
 
-  { cat:"Geschichte & Rekorde", diff:"schwer",
+  { cat:"Geschichte & Rekorde", diff:"schwer", club:null,
     q:"Welche Mannschaft wurde 1992 und 1993 Deutscher Meister?",
     answers:[{text:"SG Flensburg-Handewitt",correct:false},{text:"TSV Grün-Weiß Dankersen",correct:false},{text:"SG Wallau/Massenheim",correct:true},{text:"THW Kiel",correct:false}],
     fact:"SG Wallau/Massenheim gewann 1992 und 1993 überraschend die Deutsche Meisterschaft – bevor die 'großen Vier' (Kiel, Flensburg, Hamburg, Magdeburg) die Liga dominierten." },
 
   // ══ SPIELER & STARS ══
-  { cat:"Spieler & Stars", diff:"leicht",
+  { cat:"Spieler & Stars", diff:"leicht", club:null,
     q:"Mathias Gidsel war 2025/26 Topscorer der Liga – für welches Team spielt er?",
     answers:[{text:"THW Kiel",correct:false},{text:"SC Magdeburg",correct:false},{text:"Füchse Berlin",correct:true},{text:"SG Flensburg-Handewitt",correct:false}],
-    fact:"Mathias Gidsel ist Olympiasieger 2024 und dänischer Nationalspieler. Er erzielte 2025/26 261 Tore und war bester Spieler der Saison 2024/25." },
+    fact:"Mathias Gidsel ist Olympiasieger 2024 und dänischer Nationalspieler. Er erzielte 2025/26 als Topscorer 261 Tore und war zudem bester Spieler der Saison 2024/25." },
 
-  { cat:"Spieler & Stars", diff:"leicht",
-    q:"Für welchen Verein spielte Johannes Bitter, bevor er zum SC Magdeburg wechselte?",
-    answers:[{text:"THW Kiel",correct:false},{text:"Wilhelmshavener HV",correct:true},{text:"TV Großwallstadt",correct:false},{text:"SG Flensburg-Handewitt",correct:false}],
-    fact:"Johannes Bitter wechselte vom Wilhelmshavener HV zum SC Magdeburg, dann 2007 zum HSV Hamburg. Nach der Hamburg-Insolvenz spielte er für TVB Stuttgart und kehrte 2021 zum HSV Hamburg zurück, wo er 2024 seine Karriere beendete." },
-
-  { cat:"Spieler & Stars", diff:"leicht",
+  { cat:"Spieler & Stars", diff:"leicht", club:null,
     q:"Bei welchen Vereinen spielte Stefan Kretzschmar in seiner Karriere?",
     answers:[{text:"THW Kiel & SC Magdeburg",correct:false},{text:"Blau-Weiß Spandau, VfL Gummersbach & SC Magdeburg",correct:true},{text:"Flensburg, Wismar & Lemgo",correct:false},{text:"Nur beim SC Magdeburg",correct:false}],
     fact:"Stefan Kretzschmar spielte für SV Blau-Weiß Spandau (1991–93), VfL Gummersbach (1993–96) und SC Magdeburg (1996–2007). Er erzielte 1.694 Tore in 421 Bundesligaspielen." },
 
-  { cat:"Spieler & Stars", diff:"mittel",
+  { cat:"Spieler & Stars", diff:"mittel", club:null,
     q:"Wie oft wurde Nikola Karabatić zum Welthandballer des Jahres gewählt?",
     answers:[{text:"2-mal",correct:false},{text:"3-mal",correct:true},{text:"4-mal",correct:false},{text:"5-mal",correct:false}],
     fact:"Nikola Karabatić wurde 2007, 2014 und 2016 zum Welthandballer gewählt. Er spielte von 2005 bis 2009 beim THW Kiel und gewann dort u.a. die Champions League 2007." },
 
-  { cat:"Spieler & Stars", diff:"mittel",
-    q:"Von wann bis wann spielte Nikola Karabatić beim THW Kiel?",
-    answers:[{text:"2003–2007",correct:false},{text:"2005–2009",correct:true},{text:"2009–2012",correct:false},{text:"2007–2011",correct:false}],
-    fact:"Karabatić wechselte 2005 von Montpellier HB zu THW Kiel, blieb bis 2009 und kehrte dann nach Montpellier zurück. In Kiel gewann er viermal die Deutsche Meisterschaft und 2007 die Champions League." },
-
-  { cat:"Spieler & Stars", diff:"mittel",
+  { cat:"Spieler & Stars", diff:"mittel", club:null,
     q:"Welcher schwedische Kapitän spielte von 2003 bis 2013 für den THW Kiel?",
     answers:[{text:"Magnus Wislander",correct:false},{text:"Staffan Olsson",correct:false},{text:"Marcus Ahlm",correct:true},{text:"Kim Andersson",correct:false}],
-    fact:"Marcus Ahlm spielte von 2003 bis 2013 als Kreisläufer und Kapitän für THW Kiel. Er gewann mit den Zebras alles – u.a. Champions League 2007, 2010 und 2012." },
+    fact:"Marcus Ahlm spielte von 2003 bis 2013 als Kreisläufer und Kapitän für THW Kiel. Er gewann mit den Zebras u.a. die Champions League 2007, 2010 und 2012." },
 
-  { cat:"Spieler & Stars", diff:"mittel",
+  { cat:"Spieler & Stars", diff:"mittel", club:null,
     q:"Welcher tschechische Spielmacher spielte von 2007 bis 2015 für THW Kiel und wurde 2010 Welthandballer?",
     answers:[{text:"Martin Galia",correct:false},{text:"Filip Jicha",correct:true},{text:"Petr Linhart",correct:false},{text:"Ondrej Zdráhala",correct:false}],
     fact:"Filip Jicha wechselte 2007 vom TBV Lemgo zu THW Kiel und spielte bis 2015 dort. Er wurde 2010 zum Welthandballer des Jahres gewählt und gewann mit Kiel die Champions League 2010 und 2012." },
 
-  { cat:"Spieler & Stars", diff:"mittel",
+  { cat:"Spieler & Stars", diff:"mittel", club:null,
     q:"Welcher kroatische Kapitän des THW Kiel wurde 2013 Welthandballer des Jahres?",
     answers:[{text:"Ivan Čupić",correct:false},{text:"Luka Cindrić",correct:false},{text:"Domagoj Duvnjak",correct:true},{text:"Igor Karačić",correct:false}],
     fact:"Domagoj Duvnjak ist seit 2014 Kapitän des THW Kiel und kroatischer Rekordnationalspieler (272 Einsätze). Er wurde 2013 zum Welthandballer des Jahres gewählt." },
 
-  { cat:"Spieler & Stars", diff:"mittel",
+  { cat:"Spieler & Stars", diff:"mittel", club:null,
     q:"Welcher deutsche Torhüter war Weltmeister 2007 und spielte u.a. für SC Magdeburg und HSV Hamburg?",
     answers:[{text:"Silvio Heinevetter",correct:false},{text:"Johannes Bitter",correct:true},{text:"Andreas Wolff",correct:false},{text:"Carsten Lichtlein",correct:false}],
     fact:"Johannes Bitter (Weltmeister 2007) spielte für SC Magdeburg, dann ab 2007 viele Jahre für HSV Hamburg. Nach einer Station beim TVB Stuttgart kehrte er 2021 zum HSV Hamburg zurück und beendete 2024 seine Karriere." },
 
-  { cat:"Spieler & Stars", diff:"mittel",
-    q:"Welcher langjährige Torwart der Füchse Berlin ist bekannt als 'Silbereisen des Handballs'?",
-    answers:[{text:"Andreas Wolff",correct:false},{text:"Silvio Heinevetter",correct:true},{text:"Carsten Lichtlein",correct:false},{text:"Dario Quenstedt",correct:false}],
-    fact:"Silvio Heinevetter spielte fast 20 Jahre für die Füchse Berlin und ist eine der beliebtesten Persönlichkeiten im deutschen Handball. Seine Ausstrahlung brachte ihm den Spitznamen ein." },
-
-  { cat:"Spieler & Stars", diff:"schwer",
+  { cat:"Spieler & Stars", diff:"schwer", club:null,
     q:"Welcher schwedische Spielmacher spielte von 1990 bis 2002 für THW Kiel und gilt als einer der besten Handballer aller Zeiten?",
     answers:[{text:"Staffan Olsson",correct:false},{text:"Marcus Ahlm",correct:false},{text:"Magnus Wislander",correct:true},{text:"Kim Andersson",correct:false}],
     fact:"Magnus Wislander spielte von 1990 bis 2002 für THW Kiel, gewann siebenmal die Deutsche Meisterschaft und wurde im Jahr 2000 zum Welthandballer des 20. Jahrhunderts gewählt." },
 
-  { cat:"Spieler & Stars", diff:"schwer",
+  { cat:"Spieler & Stars", diff:"schwer", club:null,
     q:"Welcher dänische Linksaußen von THW Kiel ist als 'The Laser' bekannt?",
     answers:[{text:"Niclas Ekberg",correct:true},{text:"Mikkel Hansen",correct:false},{text:"Rene Toft Hansen",correct:false},{text:"Mathias Gidsel",correct:false}],
     fact:"Niclas Ekberg trägt den Spitznamen 'The Laser' dank seiner präzisen Würfe. Er ist seit Jahren einer der besten Linksaußen der Welt und spielt für THW Kiel sowie die dänische Nationalmannschaft." },
 
   // ══ WETTBEWERBE & FORMAT ══
-  { cat:"Wettbewerbe & Format", diff:"leicht",
+  { cat:"Wettbewerbe & Format", diff:"leicht", club:null,
     q:"Für welchen Wettbewerb qualifizieren sich die beiden Erstplatzierten der Bundesliga?",
     answers:[{text:"EHF European League",correct:false},{text:"EHF Champions League",correct:true},{text:"DHB-Pokal",correct:false},{text:"Super Globe",correct:false}],
     fact:"Die Top 2 der Bundesliga spielen in der nächsten Saison in der EHF Champions League – dem wichtigsten europäischen Vereinswettbewerb im Handball." },
 
-  { cat:"Wettbewerbe & Format", diff:"leicht",
+  { cat:"Wettbewerbe & Format", diff:"leicht", club:null,
     q:"Was passiert mit den letzten beiden Teams der Bundesliga-Tabelle?",
     answers:[{text:"Relegations-Playoff",correct:false},{text:"Direkter Abstieg",correct:true},{text:"Kein Abstieg",correct:false},{text:"Barrage gegen 3. Liga",correct:false}],
     fact:"Die beiden Tabellenletzten steigen direkt in die 2. Handball-Bundesliga ab – ohne Relegation oder Playoffs." },
 
-  { cat:"Wettbewerbe & Format", diff:"leicht",
+  { cat:"Wettbewerbe & Format", diff:"leicht", club:null,
     q:"In welcher Arena findet das DHB-Pokal-Final-Four statt?",
     answers:[{text:"Barclays Arena Hamburg",correct:false},{text:"LANXESS Arena Köln",correct:true},{text:"Mercedes-Benz Arena Berlin",correct:false},{text:"Westfalenhalle Dortmund",correct:false}],
     fact:"Das DHB-Pokal-Final-Four findet seit 2023 in der LANXESS Arena in Köln statt. Zuvor war Hamburg (2003–2022) jahrelang der Austragungsort." },
 
-  { cat:"Wettbewerbe & Format", diff:"mittel",
+  { cat:"Wettbewerbe & Format", diff:"mittel", club:null,
     q:"Wer ist der Rekordsieger im DHB-Pokal?",
     answers:[{text:"VfL Gummersbach",correct:false},{text:"SG Flensburg-Handewitt",correct:false},{text:"THW Kiel",correct:true},{text:"SC Magdeburg",correct:false}],
-    fact:"THW Kiel ist mit 13 DHB-Pokalsiegen (Stand 2025) klarer Rekordsieger – vor VfL Gummersbach mit 5 Titeln und SG Flensburg-Handewitt, TBV Lemgo und TV Großwallstadt mit je 4 Titeln." },
+    fact:"THW Kiel ist mit 13 DHB-Pokalsiegen (Stand 2025) klarer Rekordsieger – vor VfL Gummersbach mit 5 Titeln sowie SG Flensburg-Handewitt, TBV Lemgo und TV Großwallstadt mit je 4 Titeln." },
 
-  { cat:"Wettbewerbe & Format", diff:"mittel",
-    q:"Welcher Sponsor gab der Liga ihren Namen in der Saison 2025/26?",
+  { cat:"Wettbewerbe & Format", diff:"mittel", club:null,
+    q:"Welcher Sponsor gab der Liga seinen Namen in der Saison 2025/26?",
     answers:[{text:"DKB",correct:false},{text:"Liqui Moly",correct:false},{text:"Daikin",correct:true},{text:"Opel",correct:false}],
     fact:"Die Liga heißt offiziell 'Daikin Handball-Bundesliga 2025/26'. Ab dem 1. Juli 2026 übernimmt Opel für drei Jahre als neuer Namenssponsor." },
 
-  { cat:"Wettbewerbe & Format", diff:"mittel",
-    q:"Von wann bis wann war DKB Namenssponsor der Bundesliga?",
-    answers:[{text:"2008–2016",correct:false},{text:"2013–2019",correct:true},{text:"2010–2018",correct:false},{text:"2015–2022",correct:false}],
-    fact:"Die Deutsche Kreditbank (DKB) war von der Saison 2012/13 bis 2018/19 Namenssponsor – die Liga hieß in dieser Zeit 'DKB Handball-Bundesliga'." },
-
-  { cat:"Wettbewerbe & Format", diff:"schwer",
+  { cat:"Wettbewerbe & Format", diff:"schwer", club:null,
     q:"Wie viele Spieltage umfasst eine vollständige Bundesliga-Saison mit 18 Teams?",
     answers:[{text:"30",correct:false},{text:"32",correct:false},{text:"34",correct:true},{text:"36",correct:false}],
     fact:"Mit 18 Teams und dem Modus 'Jeder gegen jeden – Hin- und Rückspiel' ergeben sich genau 34 Spieltage pro Saison." },
 
   // ══ EUROPA & INTERNATIONAL ══
-  { cat:"Europa & International", diff:"leicht",
+  { cat:"Europa & International", diff:"leicht", club:null,
     q:"Welcher HBL-Club gewann die EHF Champions League 2023?",
     answers:[{text:"THW Kiel",correct:false},{text:"Füchse Berlin",correct:false},{text:"SC Magdeburg",correct:true},{text:"SG Flensburg-Handewitt",correct:false}],
     fact:"SC Magdeburg gewann 2023 die EHF Champions League durch einen dramatischen 30:29-Finalsieg nach Verlängerung gegen KS Kielce." },
 
-  { cat:"Europa & International", diff:"mittel",
+  { cat:"Europa & International", diff:"mittel", club:null,
     q:"Wie oft gewann THW Kiel die EHF Champions League?",
     answers:[{text:"2-mal",correct:false},{text:"3-mal",correct:false},{text:"4-mal",correct:true},{text:"6-mal",correct:false}],
-    fact:"THW Kiel gewann die EHF Champions League viermal: 2007, 2010, 2012 und 2020. Der erste Titel war Teil des historischen Triples 2007." },
+    fact:"THW Kiel gewann die EHF Champions League viermal: 2007, 2010, 2012 und 2020. Der erste Titel 2007 war Teil des historischen Triples." },
 
-  { cat:"Europa & International", diff:"mittel",
-    q:"In welchem Jahr gewann THW Kiel erstmals die EHF Champions League?",
-    answers:[{text:"1995",correct:false},{text:"2000",correct:false},{text:"2007",correct:true},{text:"2010",correct:false}],
-    fact:"THW Kiel gewann die EHF Champions League erstmals 2007 – als Teil des legendären Triples (Meisterschaft, DHB-Pokal, Champions League)." },
-
-  { cat:"Europa & International", diff:"mittel",
-    q:"Welcher HSV-Hamburg-Torhüter half 2013 den Champions-League-Titel zu gewinnen?",
+  { cat:"Europa & International", diff:"mittel", club:null,
+    q:"Welcher HSV-Hamburg-Torhüter gewann 2013 die Champions League?",
     answers:[{text:"Silvio Heinevetter",correct:false},{text:"Johannes Bitter",correct:true},{text:"Andreas Wolff",correct:false},{text:"Dario Quenstedt",correct:false}],
-    fact:"Johannes Bitter war Stammtorhüter des HSV Hamburg und gewann mit dem Club 2013 die EHF Champions League gegen FC Barcelona nach Verlängerung (30:29). Bitter hielt in der Verlängerung den entscheidenden letzten Wurf." },
+    fact:"Johannes Bitter war Stammtorhüter des HSV Hamburg und gewann mit dem Club 2013 die EHF Champions League gegen FC Barcelona nach Verlängerung (30:29). Bitter hielt den entscheidenden letzten Wurf." },
 
-  { cat:"Europa & International", diff:"schwer",
+  { cat:"Europa & International", diff:"schwer", club:null,
     q:"In welchem Jahr gewann VfL Gummersbach erstmals den Europapokal der Landesmeister?",
     answers:[{text:"1963",correct:false},{text:"1967",correct:true},{text:"1974",correct:false},{text:"1983",correct:false}],
     fact:"VfL Gummersbach gewann den Europapokal der Landesmeister erstmals 1967 und insgesamt fünfmal (1967, 1970, 1971, 1974, 1983) – die erfolgreichste Bilanz eines deutschen Clubs in diesem Wettbewerb." },
 
-  { cat:"Europa & International", diff:"schwer",
-    q:"Welcher schwedische Handball-Star spielte von 1990 bis 2002 für THW Kiel und wurde 2000 zum Welthandballer des 20. Jahrhunderts gewählt?",
-    answers:[{text:"Staffan Olsson",correct:false},{text:"Marcus Ahlm",correct:false},{text:"Kim Andersson",correct:false},{text:"Magnus Wislander",correct:true}],
-    fact:"Magnus Wislander spielte zwölf Jahre für THW Kiel, gewann siebenmal die Deutsche Meisterschaft und gilt als einer der prägendsten Handballer der Geschichte." },
-
   // ══ REGELKUNDE & TAKTIK ══
-  { cat:"Regelkunde & Taktik", diff:"leicht",
+  { cat:"Regelkunde & Taktik", diff:"leicht", club:null,
     q:"Wie lange dauert ein Bundesliga-Handballspiel regulär?",
     answers:[{text:"2 × 30 Minuten",correct:true},{text:"2 × 35 Minuten",correct:false},{text:"2 × 40 Minuten",correct:false},{text:"2 × 45 Minuten",correct:false}],
-    fact:"Ein Handballspiel dauert 2 × 30 Minuten mit einer Halbzeitpause von 15 Minuten. Bei Unentschieden in Pokalspielen folgen Verlängerungen." },
+    fact:"Ein Handballspiel dauert 2 × 30 Minuten mit einer Halbzeitpause. Bei Unentschieden in Pokalspielen folgen Verlängerungen (je 2 × 5 Minuten), danach ggf. Siebenmeterschießen." },
 
-  { cat:"Regelkunde & Taktik", diff:"leicht",
+  { cat:"Regelkunde & Taktik", diff:"leicht", club:null,
     q:"Wie viele Feldspieler (ohne Torwart) hat jede Mannschaft gleichzeitig auf dem Spielfeld?",
     answers:[{text:"5",correct:false},{text:"6",correct:true},{text:"7",correct:false},{text:"8",correct:false}],
     fact:"Jede Handballmannschaft spielt mit 6 Feldspielern und einem Torwart – also 7 Akteure insgesamt. Beim Powerplay (7-gegen-6) ersetzt ein Feldspieler den Torwart." },
 
-  { cat:"Regelkunde & Taktik", diff:"mittel",
-    q:"Wie nennt man die Aufstellung ohne Torwart, bei der ein 7. Feldspieler eingesetzt wird?",
-    answers:[{text:"Pressing",correct:false},{text:"7-gegen-6 / Powerplay",correct:true},{text:"Manndeckung",correct:false},{text:"Raumdeckung",correct:false}],
-    fact:"Das 7-gegen-6 oder 'Powerplay' ist eine riskante Angriffstaktik: Der Torwart wird für einen zusätzlichen Feldspieler ausgewechselt – das Tor bleibt dabei unbedeckt." },
-
-  { cat:"Regelkunde & Taktik", diff:"mittel",
+  { cat:"Regelkunde & Taktik", diff:"mittel", club:null,
     q:"Was bedeutet die Abwehrformation '6:0' im Handball?",
     answers:[{text:"6 Spieler in einer Linie vor dem Kreis",correct:true},{text:"6 Spieler im Angriff, 0 in der Abwehr",correct:false},{text:"6 Treffer in 0 Versuchen",correct:false},{text:"6 Auswechslungen, 0 Fehler",correct:false}],
     fact:"Die '6:0'-Deckung stellt alle sechs Feldspieler in einer Linie auf Höhe des Torkreises auf – die klassische deutsche Defensivformation." },
 
-  { cat:"Regelkunde & Taktik", diff:"schwer",
-    q:"Aus welcher Entfernung wird der Siebenmeter ausgeführt?",
-    answers:[{text:"6 Meter",correct:false},{text:"7 Meter",correct:true},{text:"8 Meter",correct:false},{text:"9 Meter",correct:false}],
-    fact:"Der Siebenmeter wird aus genau 7 Metern ausgeführt – daher der Name. Er entspricht im Handball dem Elfmeter im Fußball." },
-
-  { cat:"Regelkunde & Taktik", diff:"schwer",
+  { cat:"Regelkunde & Taktik", diff:"schwer", club:null,
     q:"Was passiert, wenn ein Torhüter beim 7-gegen-6 den Ball außerhalb seines Torraums berührt?",
     answers:[{text:"Freiwurf für den Gegner",correct:false},{text:"Siebenmeter für den Gegner",correct:true},{text:"Gelbe Karte",correct:false},{text:"2-Minuten-Strafe",correct:false}],
     fact:"Wenn der ausgewechselte Torhüter als Feldspieler den Ball außerhalb seines Torraums berührt, wird ein Siebenmeter für den Gegner verhängt – das höchste Risiko des Powerplays." },
 
   // ══ STADIEN & ATMOSPHÄRE ══
-  { cat:"Stadien & Atmosphäre", diff:"mittel",
-    q:"Welche Handball-Arena in Deutschland gilt als eine der lautesten Europas?",
-    answers:[{text:"GETEC-Arena Magdeburg",correct:false},{text:"Max-Schmeling-Halle Berlin",correct:false},{text:"Wunderino Arena Kiel",correct:true},{text:"SAP Arena Mannheim",correct:false}],
-    fact:"Die Wunderino Arena in Kiel ist für ihre einzigartige Atmosphäre bekannt. Trotz 'nur' rund 10.000 Plätzen gilt sie als eine der lautesten Hallen Europas." },
-
-  { cat:"Stadien & Atmosphäre", diff:"mittel",
+  { cat:"Stadien & Atmosphäre", diff:"mittel", club:null,
     q:"Welches war das meistbesuchte Spiel der HBL-Geschichte?",
     answers:[{text:"THW Kiel vs. SC Magdeburg (2007)",correct:false},{text:"Rhein-Neckar Löwen vs. HSV Hamburg im Waldstadion (2014)",correct:true},{text:"THW Kiel vs. Flensburg (2012)",correct:false},{text:"SC Magdeburg vs. Füchse Berlin (2023)",correct:false}],
     fact:"Am 6. September 2014 sahen 44.189 Zuschauer im Waldstadion Frankfurt das Spiel Rhein-Neckar Löwen gegen HSV Hamburg – Weltrekord für ein Handball-Vereinsspiel." },
 
-  { cat:"Stadien & Atmosphäre", diff:"schwer",
+  { cat:"Stadien & Atmosphäre", diff:"schwer", club:null,
     q:"In welchem Jahr wurde das DHB-Pokal-Final-Four erstmals in der LANXESS Arena Köln ausgetragen?",
     answers:[{text:"2019",correct:false},{text:"2021",correct:false},{text:"2023",correct:true},{text:"2025",correct:false}],
     fact:"Von 2003 bis 2022 fand das Final-Four in Hamburg statt. Seit 2023 ist die LANXESS Arena Köln der neue Austragungsort – die 'Kathedrale des Handballs'." },
 
   // ══ KURIOSES & BESONDERES ══
-  { cat:"Kurioses & Besonderes", diff:"mittel",
+  { cat:"Kurioses & Besonderes", diff:"mittel", club:null,
     q:"Welcher Bundesliga-Verein ist bekannt für seine orange Vereinsfarbe?",
     answers:[{text:"HC Erlangen",correct:false},{text:"HSG Wetzlar",correct:true},{text:"TSV Hannover-Burgdorf",correct:false},{text:"ThSV Eisenach",correct:false}],
     fact:"HSG Wetzlar trägt markantes Orange als Vereinsfarbe. Der Club aus der mittelhessischen Stadt ist damit einer der auffälligsten in der gesamten Bundesliga." },
 
-  { cat:"Kurioses & Besonderes", diff:"mittel",
-    q:"Welcher Club spielte in der Saison 2011/12 jedes Bundesligaspiel und beendete die Saison mit 68:0 Punkten?",
+  { cat:"Kurioses & Besonderes", diff:"mittel", club:null,
+    q:"Welcher Club spielte die Saison 2011/12 ohne eine einzige Niederlage?",
     answers:[{text:"SC Magdeburg",correct:false},{text:"SG Flensburg-Handewitt",correct:false},{text:"THW Kiel",correct:true},{text:"Rhein-Neckar Löwen",correct:false}],
-    fact:"THW Kiel gewann 2011/12 jedes einzelne Bundesligaspiel – die einzige perfekte Saison in der Geschichte der Bundesliga. Zusätzlich wurde Kiel in diesem Jahr Champions-League-Sieger und DHB-Pokalsieger." },
+    fact:"THW Kiel gewann 2011/12 jedes einzelne Bundesligaspiel – die einzige perfekte Saison in der Geschichte der Bundesliga. Zusätzlich wurden die Zebras in diesem Jahr Champions-League-Sieger und DHB-Pokalsieger." },
 
-  { cat:"Kurioses & Besonderes", diff:"schwer",
+  { cat:"Kurioses & Besonderes", diff:"schwer", club:null,
     q:"Was war das torreichste Spiel in der HBL-Geschichte?",
     answers:[{text:"HSV Hamburg vs. Magdeburg (2009): 80 Tore",correct:false},{text:"THW Kiel vs. SC Magdeburg (2005): 88 Tore",correct:true},{text:"Flensburg vs. Gummersbach (2001): 84 Tore",correct:false},{text:"Rhein-Neckar Löwen vs. THW Kiel (2010): 82 Tore",correct:false}],
     fact:"Das Spiel THW Kiel gegen SC Magdeburg am 20. Dezember 2005 endete 54:34 – insgesamt 88 Tore, der bisherige Rekord in der Bundesliga-Geschichte." },
 
-  { cat:"Kurioses & Besonderes", diff:"schwer",
-    q:"Wann fand das meistbesuchte Handball-Vereinsspiel der Welt statt?",
-    answers:[{text:"2009",correct:false},{text:"2012",correct:false},{text:"2014",correct:true},{text:"2017",correct:false}],
-    fact:"Am 6. September 2014 sahen 44.189 Zuschauer im Frankfurter Waldstadion das HBL-Spiel Rhein-Neckar Löwen gegen HSV Hamburg – bis heute Weltrekord." },
-
   // ══ SCHIEDSRICHTER & REGELWERK ══
-  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht", club:null,
     q:"Was bedeutet eine gelbe Karte im Handball?",
     answers:[{text:"Sofortige 2-Minuten-Strafe",correct:false},{text:"Verwarnung – Vorstufe zur Zeitstrafe",correct:true},{text:"Disqualifikation für dieses Spiel",correct:false},{text:"Freiwurf für den Gegner",correct:false}],
-    fact:"Die gelbe Karte ist eine formelle Verwarnung. Sie ist die erste Stufe der progressiven Bestrafung und Vorstufe zur 2-Minuten-Strafe. Pro Spieler gibt es nur eine Verwarnung; jede weitere Verfehlung führt direkt zur Hinausstellung." },
+    fact:"Die gelbe Karte ist eine formelle Verwarnung und die erste Stufe der progressiven Bestrafung. Pro Spieler gibt es nur eine Verwarnung; jede weitere Verfehlung führt direkt zur 2-Minuten-Strafe." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht", club:null,
     q:"Wie lange dauert eine Hinausstellung (Zeitstrafe) im Handball?",
     answers:[{text:"1 Minute",correct:false},{text:"2 Minuten",correct:true},{text:"5 Minuten",correct:false},{text:"Bis Halbzeit",correct:false}],
-    fact:"Die Hinausstellung dauert genau 2 Minuten. In dieser Zeit spielt die betroffene Mannschaft in Unterzahl (6 gegen 7), kann aber nach Ablauf der Zeit wieder vollzählig werden." },
+    fact:"Die Hinausstellung dauert genau 2 Minuten. In dieser Zeit spielt die betroffene Mannschaft in Unterzahl, kann aber nach Ablauf der Zeit wieder vollzählig werden." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht", club:null,
     q:"Was bedeutet die rote Karte im Handball?",
     answers:[{text:"10-Minuten-Strafe",correct:false},{text:"Disqualifikation für den Rest des Spiels",correct:true},{text:"Platzverbot für das nächste Spiel",correct:false},{text:"Freistoß vom Siebenmeterpunkt",correct:false}],
-    fact:"Die rote Karte bedeutet Disqualifikation: Der Spieler muss das Spielfeld und den Auswechselraum verlassen. Die Mannschaft spielt die nächsten 2 Minuten in Unterzahl, kann aber danach einen Ersatzspieler einwechseln." },
+    fact:"Die rote Karte bedeutet Disqualifikation: Der Spieler muss das Spielfeld und den Auswechselraum verlassen. Die Mannschaft spielt die nächsten 2 Minuten in Unterzahl, kann danach einen Ersatzspieler einwechseln." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht", club:null,
     q:"Wie groß ist ein Handballspielfeld laut IHF-Regelwerk?",
     answers:[{text:"30 m × 15 m",correct:false},{text:"40 m × 20 m",correct:true},{text:"44 m × 22 m",correct:false},{text:"38 m × 18 m",correct:false}],
     fact:"Ein Handballspielfeld misst exakt 40 Meter in der Länge und 20 Meter in der Breite – weltweit einheitlich festgelegt durch das IHF-Regelwerk." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht", club:null,
     q:"Wie breit und hoch ist ein Handballtor?",
     answers:[{text:"2 m breit, 1,5 m hoch",correct:false},{text:"3 m breit, 2 m hoch",correct:true},{text:"2,5 m breit, 2 m hoch",correct:false},{text:"3 m breit, 2,5 m hoch",correct:false}],
     fact:"Ein Handballtor ist genau 3 Meter breit und 2 Meter hoch – diese Maße sind weltweit einheitlich und seit Jahrzehnten unverändert." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"leicht",
+  { cat:"Schiedsrichter & Regelwerk", diff:"leicht", club:null,
     q:"Wie viele Schritte darf ein Feldspieler mit dem Ball machen, ohne zu dribbeln?",
     answers:[{text:"2 Schritte",correct:false},{text:"3 Schritte",correct:true},{text:"4 Schritte",correct:false},{text:"Beliebig viele",correct:false}],
     fact:"Ein Feldspieler darf maximal 3 Schritte mit dem Ball machen, ohne zu dribbeln. Mehr Schritte werden als 'Schrittfehler' gepfiffen und mit Freiwurf für den Gegner geahndet." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel", club:null,
     q:"Was passiert nach der dritten 2-Minuten-Strafe desselben Spielers?",
     answers:[{text:"Nur weitere 2 Minuten",correct:false},{text:"Automatische Disqualifikation (Rote Karte)",correct:true},{text:"Spielsperre für das nächste Spiel",correct:false},{text:"Nichts – es gibt keine Begrenzung",correct:false}],
     fact:"Die dritte 2-Minuten-Strafe desselben Spielers bedeutet automatisch die Disqualifikation (Rote Karte). Die Mannschaft muss danach 2 Minuten in Unterzahl spielen, kann aber dann einen Ersatz einwechseln." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel", club:null,
     q:"Welche Linie darf nur der Torwart betreten?",
     answers:[{text:"Die 7-Meter-Linie",correct:false},{text:"Die 9-Meter-Freiwurflinie",correct:false},{text:"Die 6-Meter-Torraumlinie",correct:true},{text:"Die Mittellinie",correct:false}],
     fact:"Der Torraum (begrenzt durch die 6-Meter-Linie) darf ausschließlich vom Torwart betreten werden. Betritt ein Feldspieler den Torraum im Angriff, gibt es Freiwurf; in der Abwehr einen Siebenmeter für den Gegner." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
-    q:"Wann wird im Handball ein Siebenmeter verhängt?",
-    answers:[{text:"Bei jedem Foul im Angriff",correct:false},{text:"Bei Foul oder illegalem Eingriff mit Verhinderung einer klaren Torchance",correct:true},{text:"Wenn der Ball die Seitenlinie berührt",correct:false},{text:"Nach jeder roten Karte",correct:false}],
-    fact:"Ein Siebenmeter wird verhängt, wenn eine klare Torchance durch einen regelwidrigen Eingriff verhindert wird – z.B. durch ein Foul oder wenn ein Abwehrspieler unerlaubt den Torraum betritt." },
-
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel", club:null,
     q:"Wie viele Schiedsrichter leiten ein Handball-Bundesligaspiel?",
     answers:[{text:"1",correct:false},{text:"2",correct:true},{text:"3",correct:false},{text:"4",correct:false}],
     fact:"Jedes Handball-Bundesligaspiel wird von genau 2 gleichberechtigten Schiedsrichtern geleitet. Sie haben dieselben Rechte und Pflichten und treffen Entscheidungen idealerweise gemeinsam." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel", club:null,
     q:"Wie weit müssen Gegenspieler bei einem Freiwurf mindestens entfernt sein?",
     answers:[{text:"1 Meter",correct:false},{text:"2 Meter",correct:false},{text:"3 Meter",correct:true},{text:"5 Meter",correct:false}],
-    fact:"Bei einem Freiwurf müssen alle Gegenspieler mindestens 3 Meter vom Ball entfernt sein. Stehen sie näher, kann der Schiedsrichter die Ausführung zurückpfeifen oder eine progressive Strafe verhängen." },
+    fact:"Bei einem Freiwurf müssen alle Gegenspieler mindestens 3 Meter vom Ball entfernt sein. Stehen sie näher, kann der Schiedsrichter progressive Strafen verhängen." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel", club:null,
     q:"Was bedeutet 'passives Spiel' (Zeitspiel) im Handball?",
     answers:[{text:"Ein Spieler hält den Ball fest ohne Bewegung",correct:false},{text:"Eine Mannschaft greift nicht aktiv an und spielt auf Zeit",correct:true},{text:"Der Torwart verlässt den Torraum nicht",correct:false},{text:"Beide Teams spielen ohne Körperkontakt",correct:false}],
-    fact:"'Passives Spiel' oder Zeitspiel liegt vor, wenn eine Mannschaft keine erkennbare Absicht zeigt, anzugreifen. Der Schiedsrichter warnt zunächst mit erhobenem Arm; folgt keine Reaktion, gibt es Freiwurf für den Gegner." },
+    fact:"'Passives Spiel' liegt vor, wenn eine Mannschaft keine erkennbare Absicht zeigt, anzugreifen. Der Schiedsrichter warnt zunächst mit erhobenem Arm; folgt keine Reaktion, gibt es Freiwurf für den Gegner." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"mittel",
+  { cat:"Schiedsrichter & Regelwerk", diff:"mittel", club:null,
     q:"Wie weit darf der Torwart beim Siebenmeter maximal vor der Torlinie stehen, bevor der Ball abgeworfen wird?",
     answers:[{text:"2 Meter",correct:false},{text:"3 Meter",correct:false},{text:"4 Meter",correct:true},{text:"5 Meter",correct:false}],
-    fact:"Die Torwartgrenzlinie liegt 4 Meter vor der Torlinie. Beim Siebenmeter darf der Torwart diese Linie erst übertreten, wenn der Ball die Hand des Werfers verlassen hat – wer früher vorkommt, riskiert Wiederholung des Wurfs." },
+    fact:"Die Torwartgrenzlinie liegt 4 Meter vor der Torlinie. Beim Siebenmeter darf der Torwart diese Linie erst übertreten, wenn der Ball die Hand des Werfers verlassen hat – wer früher vorkommt, riskiert eine Wiederholung des Wurfs." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
-    q:"Was passiert, wenn ein Feldspieler den Ball mit dem Fuß oder Unterschenkel spielt?",
-    answers:[{text:"Gelbe Karte",correct:false},{text:"Freiwurf für den Gegner",correct:true},{text:"Siebenmeter für den Gegner",correct:false},{text:"2-Minuten-Strafe",correct:false}],
-    fact:"Das Spielen des Balls mit dem Fuß oder Unterschenkel ist verboten und wird mit Freiwurf für den Gegner geahndet. Der Torwart darf den Ball im eigenen Torraum jedoch auch mit den Füßen spielen." },
-
-  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer", club:null,
     q:"Wie viele Verwarnungen (gelbe Karten) darf eine Mannschaft insgesamt erhalten?",
     answers:[{text:"Unbegrenzt",correct:false},{text:"Maximal drei pro Mannschaft",correct:true},{text:"Maximal zwei pro Mannschaft",correct:false},{text:"Maximal fünf pro Mannschaft",correct:false}],
     fact:"Eine Mannschaft darf insgesamt maximal drei Verwarnungen (gelbe Karten) erhalten. Jede weitere Verwarnung wird direkt als 2-Minuten-Strafe ausgesprochen." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer", club:null,
     q:"Was zeigt der Schiedsrichter mit zwei erhobenen Fingern an?",
     answers:[{text:"Gelbe Karte",correct:false},{text:"2-Minuten-Strafe (Hinausstellung)",correct:true},{text:"Siebenmeter",correct:false},{text:"Freiwurf",correct:false}],
     fact:"Zwei erhobene Finger ist das offizielle Schiedsrichterzeichen für die 2-Minuten-Strafe (Hinausstellung). Der Arm wird dabei senkrecht nach oben gestreckt." },
 
-  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
-    q:"Darf ein Spieler nach dem Stopp seines Dribblings erneut mit dem Dribbeln beginnen?",
+  { cat:"Schiedsrichter & Regelwerk", diff:"schwer", club:null,
+    q:"Darf ein Spieler nach dem Stopp seines Dribblings erneut dribbeln?",
     answers:[{text:"Ja, einmal",correct:false},{text:"Ja, beliebig oft",correct:false},{text:"Nein, das ist verboten",correct:true},{text:"Nur wenn er vorher gepasst hat",correct:false}],
     fact:"Stoppt ein Spieler sein Dribbling, darf er nicht erneut dribbeln. Er muss dann passen oder werfen. Doppeldribbling wird mit Freiwurf für den Gegner geahndet." },
-
-  { cat:"Schiedsrichter & Regelwerk", diff:"schwer",
-    q:"Was passiert bei einem Unentschieden nach regulärer Spielzeit im DHB-Pokal?",
-    answers:[{text:"Sofortiges Siebenmeterschießen",correct:false},{text:"Verlängerung (2 × 5 Minuten), dann ggf. Siebenmeterschießen",correct:true},{text:"Das Spiel gilt als unentschieden",correct:false},{text:"Münzwurf entscheidet",correct:false}],
-    fact:"Im DHB-Pokal folgen bei Unentschieden nach 60 Minuten zwei Verlängerungen von je 5 Minuten. Steht es danach immer noch gleich, entscheidet ein Siebenmeterschießen (je 5 Würfe, danach abwechselnd)." },
 ];
 
-// ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
+// VEREINS-FRAGEN – je 12 Fragen, alle Fakten verifiziert
+// ═══════════════════════════════════════════════════════════════
+const CLUB_QUESTIONS = {
+
+  "Füchse Berlin": [
+    { cat:"Füchse Berlin", diff:"leicht",
+      q:"Wie lautet der Spitzname der Heimspielstätte der Füchse Berlin?",
+      answers:[{text:"Fuchsbau",correct:true},{text:"Fuchshöhle",correct:false},{text:"Fuchsburg",correct:false},{text:"Fuchsnest",correct:false}],
+      fact:"Die Max-Schmeling-Halle in Berlin trägt in Fankreisen den liebevollen Spitznamen 'Fuchsbau'. Die Halle fasst rund 9.000 Zuschauer bei Handballspielen." },
+
+    { cat:"Füchse Berlin", diff:"leicht",
+      q:"In welchem Jahr stiegen die Füchse Berlin zuletzt in die Handball-Bundesliga auf?",
+      answers:[{text:"2003",correct:false},{text:"2005",correct:false},{text:"2007",correct:true},{text:"2010",correct:false}],
+      fact:"Die Füchse Berlin stiegen zur Saison 2007/08 in die Handball-Bundesliga auf und haben sich seitdem dauerhaft in der Liga etabliert." },
+
+    { cat:"Füchse Berlin", diff:"leicht",
+      q:"Welche Farben tragen die Füchse Berlin?",
+      answers:[{text:"Blau-Weiß",correct:false},{text:"Grün-Rot",correct:true},{text:"Rot-Weiß",correct:false},{text:"Schwarz-Gelb",correct:false}],
+      fact:"Die Vereinsfarben der Füchse Berlin sind Grün und Rot. Seit der Saison 2012/13 treten die Füchse mit einem gemeinsamen Logo des Gesamtvereins in den Farben grün/weiß/rot an." },
+
+    { cat:"Füchse Berlin", diff:"leicht",
+      q:"Wann gewannen die Füchse Berlin erstmals den DHB-Pokal?",
+      answers:[{text:"2010",correct:false},{text:"2012",correct:false},{text:"2014",correct:true},{text:"2016",correct:false}],
+      fact:"Die Füchse Berlin gewannen in der Saison 2013/14 erstmals den DHB-Pokal – ihren ersten Titel überhaupt in der Vereinsgeschichte." },
+
+    { cat:"Füchse Berlin", diff:"mittel",
+      q:"Welchen internationalen Titel gewannen die Füchse Berlin 2014/15?",
+      answers:[{text:"EHF Champions League",correct:false},{text:"EHF Europa Pokal",correct:true},{text:"IHF Super Globe",correct:false},{text:"DHB-Pokal",correct:false}],
+      fact:"Die Füchse Berlin gewannen in der Saison 2014/15 den EHF Europa Pokal (heute EHF European League). Dieser Triumph qualifizierte sie erstmals für den IHF Super Globe." },
+
+    { cat:"Füchse Berlin", diff:"mittel",
+      q:"Wie oft wurden die Füchse Berlin Vereinsweltmeister (IHF Super Globe)?",
+      answers:[{text:"1-mal",correct:false},{text:"2-mal",correct:true},{text:"3-mal",correct:false},{text:"4-mal",correct:false}],
+      fact:"Die Füchse Berlin gewannen den IHF Super Globe 2015 (28:27 n.V. gegen Veszprém) und 2016 (29:28 gegen Paris). 2017 und 2018 wurden sie Vizeweltmeister." },
+
+    { cat:"Füchse Berlin", diff:"mittel",
+      q:"Wann gewannen die Füchse Berlin erstmals die Deutsche Meisterschaft?",
+      answers:[{text:"2021/22",correct:false},{text:"2022/23",correct:false},{text:"2023/24",correct:false},{text:"2024/25",correct:true}],
+      fact:"Die Füchse Berlin gewannen in der Saison 2024/25 erstmals in der Vereinsgeschichte die Deutsche Meisterschaft – einer der größten Erfolge des Berliner Clubs." },
+
+    { cat:"Füchse Berlin", diff:"mittel",
+      q:"Wer ist der langjährige dänische Topscorer der Füchse Berlin?",
+      answers:[{text:"Steffen Fäth",correct:false},{text:"Mathias Gidsel",correct:true},{text:"Paul Drux",correct:false},{text:"Hans Lindberg",correct:false}],
+      fact:"Mathias Gidsel ist der überragende Topscorer der Füchse Berlin. Der dänische Olympiasieger 2024 war 2025/26 mit 261 Toren bester Schütze der gesamten Bundesliga." },
+
+    { cat:"Füchse Berlin", diff:"mittel",
+      q:"In welchem Berliner Stadtbezirk sind die Füchse Berlin beheimatet?",
+      answers:[{text:"Mitte",correct:false},{text:"Prenzlauer Berg",correct:false},{text:"Reinickendorf",correct:true},{text:"Charlottenburg",correct:false}],
+      fact:"Die Füchse Berlin gehören zum Berliner Turn- und Sportverein von 1891 aus Berlin-Reinickendorf. Der Gesamtverein heißt offiziell 'Füchse Berlin Reinickendorf e.V. BTSV von 1891'." },
+
+    { cat:"Füchse Berlin", diff:"schwer",
+      q:"In welchem Jahr wurde der Stammverein der Füchse Berlin gegründet?",
+      answers:[{text:"1891",correct:true},{text:"1905",correct:false},{text:"1920",correct:false},{text:"1948",correct:false}],
+      fact:"Der Stammverein Füchse Berlin Reinickendorf e.V. BTSV von 1891 wurde am 28. Januar 1891 gegründet. Die Handball-Profimannschaft löste sich 2005 als GmbH aus dem Verein heraus." },
+
+    { cat:"Füchse Berlin", diff:"schwer",
+      q:"Welcher frühere Weltklasse-Handballer ist heute Vorstand Sport bei den Füchsen Berlin?",
+      answers:[{text:"Silvio Heinevetter",correct:false},{text:"Stefan Kretzschmar",correct:true},{text:"Johannes Bitter",correct:false},{text:"Christian Zeitz",correct:false}],
+      fact:"Stefan Kretzschmar – Legende des SC Magdeburg und des deutschen Handballs – ist heute als Vorstand Sport bei den Füchsen Berlin tätig und prägt die sportliche Ausrichtung des Clubs." },
+
+    { cat:"Füchse Berlin", diff:"schwer",
+      q:"Welchen DHB-Pokal-Titel gewannen die Füchse Berlin in der Saison 2025/26?",
+      answers:[{text:"Ihren ersten",correct:false},{text:"Ihren zweiten",correct:true},{text:"Ihren dritten",correct:false},{text:"Keinen – sie schieden früh aus",correct:false}],
+      fact:"Die Füchse Berlin gewannen im April 2026 beim Final4 in Köln ihren zweiten DHB-Pokal – nach dem ersten Titel 2014. Im Finale bezwangen sie den Bergischen HC mit 42:33." },
+  ],
+
+  "SC Magdeburg": [
+    { cat:"SC Magdeburg", diff:"leicht",
+      q:"In welchem Jahr wurde der SC Magdeburg gegründet?",
+      answers:[{text:"1945",correct:false},{text:"1955",correct:true},{text:"1965",correct:false},{text:"1970",correct:false}],
+      fact:"Der SC Magdeburg wurde 1955 gegründet und trug bis 1965 den Namen SC Aufbau Magdeburg. Er ist der einzige Verein der neuen Bundesländer, der sich dauerhaft in der 1. Bundesliga etabliert hat." },
+
+    { cat:"SC Magdeburg", diff:"leicht",
+      q:"Wer ist der Cheftrainer des SC Magdeburg seit November 2015?",
+      answers:[{text:"Alfred Gislason",correct:false},{text:"Bennet Wiegert",correct:true},{text:"Martin Schwalb",correct:false},{text:"Velimir Petrović",correct:false}],
+      fact:"Bennet Wiegert ist seit November 2015 Cheftrainer des SC Magdeburg. Er ist ein Eigengewächs des Vereins und gilt als einer der besten Trainer im europäischen Handball." },
+
+    { cat:"SC Magdeburg", diff:"leicht",
+      q:"Welche EHF Champions League gewann der SC Magdeburg 2023?",
+      answers:[{text:"Gegen Paris Saint-Germain",correct:false},{text:"Gegen KS Kielce",correct:true},{text:"Gegen FC Barcelona",correct:false},{text:"Gegen THW Kiel",correct:false}],
+      fact:"SC Magdeburg besiegte im Champions-League-Finale 2023 in der LANXESS Arena Köln den KS Kielce mit 30:29 nach Verlängerung – ein dramatisches Finale." },
+
+    { cat:"SC Magdeburg", diff:"mittel",
+      q:"Wie oft gewann der SC Magdeburg die EHF Champions League?",
+      answers:[{text:"1-mal (2002)",correct:false},{text:"2-mal (2002 und 2023)",correct:true},{text:"3-mal",correct:false},{text:"Noch nie",correct:false}],
+      fact:"Der SC Magdeburg gewann die EHF Champions League zweimal: 2002 (als erster ostdeutscher Club) und 2023. Zwischen diesen Titeln lagen über 20 Jahre." },
+
+    { cat:"SC Magdeburg", diff:"mittel",
+      q:"Wie viele Bundesliga-Meisterschaften hat der SC Magdeburg bisher gewonnen?",
+      answers:[{text:"2",correct:false},{text:"3",correct:false},{text:"4",correct:true},{text:"5",correct:false}],
+      fact:"Der SC Magdeburg gewann die Deutsche Meisterschaft viermal: 2001, 2022, 2024 und 2026. Zusätzlich holten sie in der DDR-Oberliga zehn Meisterschaften (1970–1991)." },
+
+    { cat:"SC Magdeburg", diff:"mittel",
+      q:"Welche Vereinsfarben trägt der SC Magdeburg?",
+      answers:[{text:"Blau-Weiß",correct:false},{text:"Grün-Rot",correct:true},{text:"Rot-Schwarz",correct:false},{text:"Grün-Schwarz",correct:false}],
+      fact:"Der SC Magdeburg trägt Grün und Rot als Vereinsfarben. Das Grün steht für die Elbestadt, das Rot für die Leidenschaft. Die Fans nennen ihre Farben liebevoll 'Grün-Rot'." },
+
+    { cat:"SC Magdeburg", diff:"schwer",
+      q:"Wie oft gewann der SC Magdeburg den IHF Super Globe in Serie?",
+      answers:[{text:"2-mal",correct:false},{text:"3-mal",correct:true},{text:"4-mal",correct:false},{text:"1-mal",correct:false}],
+      fact:"Der SC Magdeburg gewann den IHF Super Globe dreimal in Folge – 2021, 2022 und 2023. Damit zählen sie zu den erfolgreichsten Clubs bei der Handball-Vereinsweltmeisterschaft." },
+  ],
+
+  "THW Kiel": [
+    { cat:"THW Kiel", diff:"leicht",
+      q:"Wie viele Deutsche Meisterschaften hat THW Kiel bisher gewonnen?",
+      answers:[{text:"15",correct:false},{text:"19",correct:false},{text:"23",correct:true},{text:"27",correct:false}],
+      fact:"THW Kiel ist mit 23 Deutschen Meisterschaften der absolute Rekordmeister der Handball-Bundesliga. Den ersten Bundesliga-Titel gewannen die Zebras in der Saison 1988/89." },
+
+    { cat:"THW Kiel", diff:"leicht",
+      q:"Wie lautet der Spitzname des THW Kiel?",
+      answers:[{text:"Die Löwen",correct:false},{text:"Die Adler",correct:false},{text:"Die Zebras",correct:true},{text:"Die Füchse",correct:false}],
+      fact:"THW Kiel trägt den Spitznamen 'Die Zebras' wegen ihres ikonischen schwarz-weißen Trikots. Zur Saison 2025/26 kehrten die klassischen Zebrastreifen aufs Heimtrikot zurück." },
+
+    { cat:"THW Kiel", diff:"mittel",
+      q:"In welcher Arena spielt THW Kiel seine Heimspiele?",
+      answers:[{text:"SAP Arena",correct:false},{text:"GETEC-Arena",correct:false},{text:"Wunderino Arena",correct:true},{text:"LANXESS Arena",correct:false}],
+      fact:"THW Kiel spielt in der Wunderino Arena in Kiel, die rund 10.000 Zuschauer fasst und für ihre legendäre Atmosphäre bekannt ist." },
+
+    { cat:"THW Kiel", diff:"mittel",
+      q:"Wann gewann THW Kiel erstmals die EHF Champions League?",
+      answers:[{text:"1995",correct:false},{text:"2000",correct:false},{text:"2007",correct:true},{text:"2010",correct:false}],
+      fact:"THW Kiel gewann die EHF Champions League erstmals 2007 – als Teil des historischen Triples (Deutsche Meisterschaft, DHB-Pokal, Champions League) in einer Saison." },
+
+    { cat:"THW Kiel", diff:"schwer",
+      q:"Welcher schwedische Spielmacher wurde 2000 zum Welthandballer des 20. Jahrhunderts gewählt und spielte für THW Kiel?",
+      answers:[{text:"Marcus Ahlm",correct:false},{text:"Kim Andersson",correct:false},{text:"Magnus Wislander",correct:true},{text:"Staffan Olsson",correct:false}],
+      fact:"Magnus Wislander spielte von 1990 bis 2002 für THW Kiel, gewann siebenmal die Deutsche Meisterschaft und wurde von der IHF zum besten Handballer des 20. Jahrhunderts gewählt." },
+  ],
+
+  "SG Flensburg-Handewitt": [
+    { cat:"SG Flensburg-Handewitt", diff:"leicht",
+      q:"Wie lautet der Spitzname der SG Flensburg-Handewitt?",
+      answers:[{text:"Die Löwen",correct:false},{text:"Die Recken",correct:false},{text:"Die Wikinger",correct:true},{text:"Die Zebras",correct:false}],
+      fact:"Die SG Flensburg-Handewitt trägt den Spitznamen 'Die Wikinger' – angelehnt an die nordische Geschichte der Grenzregion zwischen Deutschland und Dänemark." },
+
+    { cat:"SG Flensburg-Handewitt", diff:"mittel",
+      q:"In welcher Halle spielt Flensburg-Handewitt 2025/26?",
+      answers:[{text:"Campushalle",correct:false},{text:"Flens-Arena",correct:false},{text:"GP Joule Arena",correct:true},{text:"Wikinger-Arena",correct:false}],
+      fact:"Die SG Flensburg-Handewitt spielt in der GP Joule Arena, die früher als Flens-Arena bekannt war. Sie fasst rund 6.300 Zuschauer bei Handballspielen." },
+
+    { cat:"SG Flensburg-Handewitt", diff:"mittel",
+      q:"Wie oft hat Flensburg-Handewitt die Deutsche Meisterschaft gewonnen?",
+      answers:[{text:"3-mal",correct:false},{text:"5-mal",correct:false},{text:"8-mal",correct:true},{text:"10-mal",correct:false}],
+      fact:"Die SG Flensburg-Handewitt hat achtmal die Deutsche Meisterschaft gewonnen (zuletzt 2018/19) und zählt damit zu den erfolgreichsten Clubs der Bundesliga-Geschichte." },
+
+    { cat:"SG Flensburg-Handewitt", diff:"schwer",
+      q:"Welcher kroatische Starspieler von Flensburg ist jüngst zu THW Kiel gewechselt?",
+      answers:[{text:"Luka Cindrić",correct:false},{text:"Igor Karačić",correct:false},{text:"Domagoj Duvnjak",correct:true},{text:"Ivan Čupić",correct:false}],
+      fact:"Domagoj Duvnjak spielte zunächst für HSV Hamburg, bevor er 2014 zu THW Kiel wechselte. Er ist kroatischer Rekordnationalspieler und wurde 2013 zum Welthandballer des Jahres gewählt." },
+  ],
+
+  "Rhein-Neckar Löwen": [
+    { cat:"Rhein-Neckar Löwen", diff:"leicht",
+      q:"In welcher Arena spielen die Rhein-Neckar Löwen ihre Heimspiele?",
+      answers:[{text:"Mercedes-Benz Arena",correct:false},{text:"SAP Arena Mannheim",correct:true},{text:"GETEC-Arena",correct:false},{text:"LANXESS Arena",correct:false}],
+      fact:"Die SAP Arena in Mannheim fasst über 13.000 Zuschauer bei Handballspielen und ist damit eine der größten Handball-Arenen Deutschlands." },
+
+    { cat:"Rhein-Neckar Löwen", diff:"mittel",
+      q:"Wie oft wurden die Rhein-Neckar Löwen Deutsche Meister?",
+      answers:[{text:"1-mal",correct:false},{text:"2-mal",correct:true},{text:"3-mal",correct:false},{text:"4-mal",correct:false}],
+      fact:"Die Rhein-Neckar Löwen wurden 2016 und 2017 Deutsche Meister – und verteidigten den Titel 2017 bereits zwei Spieltage vor Saisonende." },
+
+    { cat:"Rhein-Neckar Löwen", diff:"schwer",
+      q:"Wie lautete der ursprüngliche Name der Rhein-Neckar Löwen bei der Gründung 2002?",
+      answers:[{text:"SG Mannheim",correct:false},{text:"SG Kronau/Östringen",correct:true},{text:"HC Kurpfalz",correct:false},{text:"SG Rhein-Neckar",correct:false}],
+      fact:"Die Rhein-Neckar Löwen entstanden am 1. Juli 2002 als SG Kronau/Östringen aus der Fusion von TSG Kronau und TSV Baden Östringen. Seit 2007 trägt der Club den heutigen Namen." },
+  ],
+
+  "VfL Gummersbach": [
+    { cat:"VfL Gummersbach", diff:"leicht",
+      q:"Wie viele Deutsche Meisterschaften hat VfL Gummersbach gewonnen?",
+      answers:[{text:"6",correct:false},{text:"10",correct:false},{text:"12",correct:true},{text:"15",correct:false}],
+      fact:"VfL Gummersbach ist mit 12 Deutschen Meisterschaften einer der erfolgreichsten Clubs der Geschichte. Den letzten Titel holten sie 1991." },
+
+    { cat:"VfL Gummersbach", diff:"mittel",
+      q:"Wie oft gewann VfL Gummersbach den Europapokal der Landesmeister?",
+      answers:[{text:"2-mal",correct:false},{text:"3-mal",correct:false},{text:"5-mal",correct:true},{text:"7-mal",correct:false}],
+      fact:"VfL Gummersbach gewann den Europapokal der Landesmeister fünfmal: 1967, 1970, 1971, 1974 und 1983 – die erfolgreichste Bilanz eines deutschen Clubs in diesem Wettbewerb." },
+
+    { cat:"VfL Gummersbach", diff:"schwer",
+      q:"In welcher Saison stieg VfL Gummersbach erstmals aus der Bundesliga ab?",
+      answers:[{text:"2012/13",correct:false},{text:"2015/16",correct:false},{text:"2018/19",correct:true},{text:"Sie stiegen nie ab",correct:false}],
+      fact:"VfL Gummersbach stieg am Ende der Saison 2018/19 erstmals in der Vereinsgeschichte ab – ein historischer Einschnitt für den Traditionsclub." },
+  ],
+
+  "MT Melsungen": [
+    { cat:"MT Melsungen", diff:"leicht",
+      q:"In welchem Bundesland spielt die MT Melsungen?",
+      answers:[{text:"Niedersachsen",correct:false},{text:"Thüringen",correct:false},{text:"Hessen",correct:true},{text:"Bayern",correct:false}],
+      fact:"MT Melsungen kommt aus der nordhessischen Kleinstadt Melsungen und ist seit Jahrzehnten ein fester Bestandteil der Handball-Bundesliga." },
+
+    { cat:"MT Melsungen", diff:"mittel",
+      q:"Wofür steht das 'MT' in MT Melsungen?",
+      answers:[{text:"Melsunger Turnen",correct:false},{text:"Männer-Turnen",correct:false},{text:"Melsunger Turnverein",correct:true},{text:"Mittelhessischer Turnclub",correct:false}],
+      fact:"MT steht für 'Melsunger Turnverein'. Der Vollname des Vereins lautet 'MT Melsungen – Melsunger Turnverein 1876 e.V.'." },
+  ],
+
+  "TSV Hannover-Burgdorf": [
+    { cat:"TSV Hannover-Burgdorf", diff:"leicht",
+      q:"Wie lautet der Spitzname der TSV Hannover-Burgdorf?",
+      answers:[{text:"Die Wikinger",correct:false},{text:"Die Löwen",correct:false},{text:"Die Recken",correct:true},{text:"Die Adler",correct:false}],
+      fact:"'Recke' ist ein altdeutsches Wort für Krieger oder Held – ein traditionsreicher Spitzname für die TSV Hannover-Burgdorf." },
+
+    { cat:"TSV Hannover-Burgdorf", diff:"mittel",
+      q:"In welcher Halle spielt TSV Hannover-Burgdorf?",
+      answers:[{text:"ZAG-Arena",correct:true},{text:"TUI-Arena",correct:false},{text:"Swiss Life Hall",correct:false},{text:"AWD-Dome",correct:false}],
+      fact:"Die TSV Hannover-Burgdorf spielt in der ZAG-Arena (Swiss Life Hall) in Hannover. Die Halle wurde bekannt unter mehreren Sponsorenbezeichnungen und fasst rund 10.000 Zuschauer." },
+  ],
+
+  "TBV Lemgo Lippe": [
+    { cat:"TBV Lemgo Lippe", diff:"leicht",
+      q:"Wo spielt der TBV Lemgo Lippe seine Heimspiele?",
+      answers:[{text:"Bielefeld",correct:false},{text:"Paderborn",correct:false},{text:"Lemgo",correct:true},{text:"Detmold",correct:false}],
+      fact:"Der TBV Lemgo Lippe spielt in der Phoenix-Contact-Arena in Lemgo (Nordrhein-Westfalen). Die Halle fasst rund 4.500 Zuschauer." },
+
+    { cat:"TBV Lemgo Lippe", diff:"schwer",
+      q:"Wie oft gewann der TBV Lemgo den DHB-Pokal?",
+      answers:[{text:"2-mal",correct:false},{text:"3-mal",correct:false},{text:"4-mal",correct:true},{text:"5-mal",correct:false}],
+      fact:"TBV Lemgo gewann den DHB-Pokal viermal: 1995, 1997, 2002 und 2020. Besonders die frühen Erfolge galten als Sensation, da Lemgo zu den kleineren Städten der Bundesliga gehört." },
+  ],
+
+  "HSV Hamburg": [
+    { cat:"HSV Hamburg", diff:"leicht",
+      q:"Welchen großen Europäischen Titel gewann der HSV Hamburg 2013?",
+      answers:[{text:"EHF Europa Pokal",correct:false},{text:"EHF Champions League",correct:true},{text:"EHF Cup",correct:false},{text:"Super Globe",correct:false}],
+      fact:"Der HSV Hamburg gewann 2013 die EHF Champions League mit einem dramatischen 30:29-Finalsieg gegen FC Barcelona nach Verlängerung. Torhüter Johannes Bitter hielt den letzten entscheidenden Wurf." },
+
+    { cat:"HSV Hamburg", diff:"schwer",
+      q:"In welchem Jahr meldete der HSV Hamburg Insolvenz an?",
+      answers:[{text:"2014",correct:false},{text:"2016",correct:true},{text:"2018",correct:false},{text:"2020",correct:false}],
+      fact:"Der HSV Hamburg meldete 2016 Insolvenz an und wurde abgewickelt. Aus dem Neustart entstand der HSV Hamburg, der seitdem die Bundesliga-Lizenz hält und wieder in der 1. Bundesliga spielt." },
+  ],
+
+  "Frisch Auf Göppingen": [
+    { cat:"Frisch Auf Göppingen", diff:"leicht",
+      q:"In welcher Stadt ist Frisch Auf Göppingen beheimatet?",
+      answers:[{text:"Stuttgart",correct:false},{text:"Ulm",correct:false},{text:"Göppingen",correct:true},{text:"Heilbronn",correct:false}],
+      fact:"Frisch Auf Göppingen ist einer der traditionsreichsten deutschen Handballclubs und spielt in der EWS Arena in Göppingen, Baden-Württemberg." },
+  ],
+
+  "SC DHfK Leipzig": [
+    { cat:"SC DHfK Leipzig", diff:"leicht",
+      q:"Wofür steht das 'DHfK' in SC DHfK Leipzig?",
+      answers:[{text:"Deutsche Hochschule für Kampfsport",correct:false},{text:"Deutsche Hochschule für Körperkultur",correct:true},{text:"Deutsches Haus für Körperkultur",correct:false},{text:"Deutsches Handball-Förder-Kolleg",correct:false}],
+      fact:"DHfK steht für 'Deutsche Hochschule für Körperkultur'. Der SC DHfK Leipzig ist der Nachfolger des gleichnamigen DDR-Clubs, der in der DDR-Oberliga sehr erfolgreich war." },
+  ],
+
+  "TVB Stuttgart": [
+    { cat:"TVB Stuttgart", diff:"leicht",
+      q:"In welcher Stadt spielt der TVB Stuttgart?",
+      answers:[{text:"Mannheim",correct:false},{text:"Karlsruhe",correct:false},{text:"Stuttgart",correct:true},{text:"Heilbronn",correct:false}],
+      fact:"Der TVB Stuttgart spielt in der Porsche-Arena in Stuttgart. Der Club ist seit 2015 wieder erstklassig und hat sich als stabiler Bundesligist etabliert." },
+  ],
+
+  "HC Erlangen": [
+    { cat:"HC Erlangen", diff:"leicht",
+      q:"In welcher Stadt spielt der HC Erlangen?",
+      answers:[{text:"Nürnberg",correct:false},{text:"Fürth",correct:false},{text:"Erlangen",correct:false},{text:"Nürnberger Metropolregion",correct:true}],
+      fact:"Der HC Erlangen spielt zwar in Erlangen (Name), seine Heimspiele trägt er jedoch in der PSD Bank Nürnberg Arena aus – im Herzen der Metropolregion Nürnberg/Erlangen." },
+  ],
+
+  "HSG Wetzlar": [
+    { cat:"HSG Wetzlar", diff:"leicht",
+      q:"Welche unverwechselbare Vereinsfarbe trägt die HSG Wetzlar?",
+      answers:[{text:"Blau",correct:false},{text:"Grün",correct:false},{text:"Orange",correct:true},{text:"Lila",correct:false}],
+      fact:"Die HSG Wetzlar trägt markantes Orange als Vereinsfarbe und ist damit in der gesamten Bundesliga sofort wiedererkennbar." },
+  ],
+
+  "ThSV Eisenach": [
+    { cat:"ThSV Eisenach", diff:"leicht",
+      q:"In welchem Bundesland liegt Eisenach?",
+      answers:[{text:"Sachsen",correct:false},{text:"Sachsen-Anhalt",correct:false},{text:"Thüringen",correct:true},{text:"Hessen",correct:false}],
+      fact:"Eisenach liegt in Thüringen und ist bekannt für die Wartburg. Der ThSV Eisenach ist einer der traditionsreichen ostdeutschen Handballvereine." },
+  ],
+
+  "Bergischer HC": [
+    { cat:"Bergischer HC", diff:"leicht",
+      q:"In welcher Stadt hat der Bergische HC seinen Heimspielort?",
+      answers:[{text:"Solingen",correct:false},{text:"Remscheid",correct:false},{text:"Wuppertal",correct:true},{text:"Leverkusen",correct:false}],
+      fact:"Der Bergische HC spielt seine Heimspiele in der Uni-Halle Wuppertal (3.200 Plätze) sowie in der Mitsubishi-Electric-Halle in Düsseldorf bei größeren Spielen." },
+
+    { cat:"Bergischer HC", diff:"mittel",
+      q:"Welche Vereinsfarben trägt der Bergische HC?",
+      answers:[{text:"Grün-Weiß",correct:false},{text:"Blau (Heim) und Rot (Auswärts)",correct:true},{text:"Schwarz-Gelb",correct:false},{text:"Orange-Schwarz",correct:false}],
+      fact:"Der Bergische HC tritt zu Hause in Blau und auswärts in Rot an. Der Club repräsentiert das Bergische Land (Wuppertal, Solingen, Remscheid)." },
+  ],
+
+  "GWD Minden": [
+    { cat:"GWD Minden", diff:"leicht",
+      q:"Wofür steht die Abkürzung 'GWD' in GWD Minden?",
+      answers:[{text:"Grün-Weiß Dynamo",correct:false},{text:"Grün-Weiß Dankersen",correct:true},{text:"Gut-Weiter Dankersen",correct:false},{text:"Grün-Weiß Deutschland",correct:false}],
+      fact:"GWD steht für Grün-Weiß Dankersen – benannt nach dem Mindener Stadtteil Dankersen. Der Club ist seit Jahrzehnten fester Bestandteil der Bundesliga." },
+  ],
+};
+
+// ═══════════════════════════════════════════════════════════════
+// VEREINE KONFIGURATION – alle 18 Vereine der Saison 2025/26
+// ═══════════════════════════════════════════════════════════════
+const CLUBS_2025_26 = [
+  { id:"Füchse Berlin",         city:"Berlin",           emoji:"🦊" },
+  { id:"SC Magdeburg",          city:"Magdeburg",        emoji:"🟢" },
+  { id:"THW Kiel",              city:"Kiel",             emoji:"⚫" },
+  { id:"SG Flensburg-Handewitt",city:"Flensburg",        emoji:"🔴" },
+  { id:"Rhein-Neckar Löwen",    city:"Mannheim",         emoji:"🦁" },
+  { id:"MT Melsungen",          city:"Melsungen",        emoji:"🔴" },
+  { id:"TSV Hannover-Burgdorf", city:"Hannover",         emoji:"🟡" },
+  { id:"TBV Lemgo Lippe",       city:"Lemgo",            emoji:"🔵" },
+  { id:"HSV Hamburg",           city:"Hamburg",          emoji:"⚪" },
+  { id:"VfL Gummersbach",       city:"Gummersbach",      emoji:"🟤" },
+  { id:"Frisch Auf Göppingen",  city:"Göppingen",        emoji:"🟢" },
+  { id:"SC DHfK Leipzig",       city:"Leipzig",          emoji:"🔴" },
+  { id:"TVB Stuttgart",         city:"Stuttgart",        emoji:"🔵" },
+  { id:"HC Erlangen",           city:"Nürnberg/Erlangen",emoji:"🔵" },
+  { id:"HSG Wetzlar",           city:"Wetzlar",          emoji:"🟠" },
+  { id:"ThSV Eisenach",         city:"Eisenach",         emoji:"🔵" },
+  { id:"Bergischer HC",         city:"Wuppertal",        emoji:"🔵" },
+  { id:"GWD Minden",            city:"Minden",           emoji:"🟢" },
+];
+
+// ═══════════════════════════════════════════════════════════════
 // ENGINE
-// ─────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════
 const LETTERS = ['A','B','C','D'];
 let selectedMode = 'kurz';
+let selectedClub = null;
+let currentMode = 'general'; // 'general' | 'club'
 let questions = [], currentQ = 0, score = 0, streak = 0, maxStreak = 0;
 let answered = false, results = [];
 const MODE_COUNT = { kurz:15, klassisch:25, profi:40, alle:Infinity };
-
-function selectMode(mode) {
-  selectedMode = mode;
-  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
-  document.getElementById('mode-' + mode).classList.add('active');
-}
 
 function shuffle(arr) {
   const a = [...arr];
@@ -787,13 +983,61 @@ function shuffle(arr) {
   return a;
 }
 
-function startQuiz() {
-  const count = MODE_COUNT[selectedMode];
-  const shuffled = shuffle(ALL_QUESTIONS);
-  questions = count === Infinity ? shuffled : shuffled.slice(0, Math.min(count, shuffled.length));
-  currentQ = 0; score = 0; streak = 0; maxStreak = 0; results = []; answered = false;
+function selectMode(mode) {
+  selectedMode = mode;
+  document.querySelectorAll('.mode-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('mode-' + mode).classList.add('active');
+}
 
+// ── Vereinsauswahl aufbauen ──
+function showClubScreen() {
   document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('club-screen').style.display = 'block';
+  const grid = document.getElementById('club-grid');
+  grid.innerHTML = '';
+  CLUBS_2025_26.forEach(club => {
+    const qs = CLUB_QUESTIONS[club.id] || [];
+    const btn = document.createElement('button');
+    btn.className = 'club-btn';
+    btn.innerHTML = `${club.emoji} ${club.id}<span class="club-city">${club.city}</span><span class="club-count">${qs.length} Fragen</span>`;
+    if (qs.length === 0) btn.style.opacity = '0.45';
+    btn.onclick = () => startClubQuiz(club.id);
+    grid.appendChild(btn);
+  });
+}
+
+function showStartScreen() {
+  document.getElementById('club-screen').style.display = 'none';
+  document.getElementById('start-screen').style.display = 'block';
+}
+
+// ── General Quiz starten ──
+function startGeneralQuiz() {
+  currentMode = 'general';
+  selectedClub = null;
+  const count = MODE_COUNT[selectedMode];
+  const shuffled = shuffle(GENERAL_QUESTIONS);
+  questions = count === Infinity ? shuffled : shuffled.slice(0, Math.min(count, shuffled.length));
+  _runQuiz();
+}
+
+// ── Vereins-Quiz starten ──
+function startClubQuiz(clubId) {
+  const qs = CLUB_QUESTIONS[clubId];
+  if (!qs || qs.length === 0) {
+    alert('Für ' + clubId + ' sind noch keine Fragen vorhanden.');
+    return;
+  }
+  currentMode = 'club';
+  selectedClub = clubId;
+  questions = shuffle(qs);
+  _runQuiz();
+}
+
+function _runQuiz() {
+  currentQ = 0; score = 0; streak = 0; maxStreak = 0; results = []; answered = false;
+  document.getElementById('start-screen').style.display = 'none';
+  document.getElementById('club-screen').style.display = 'none';
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('quiz-screen').style.display = 'block';
   document.getElementById('q-total').textContent = questions.length;
@@ -822,15 +1066,12 @@ function renderQuestion() {
   document.getElementById('prog-pct').textContent = pct + '%';
   document.getElementById('progress-fill').style.width = pct + '%';
 
-  const feedback = document.getElementById('feedback');
-  feedback.className = 'feedback';
+  document.getElementById('feedback').className = 'feedback';
   document.getElementById('next-btn').className = 'next-btn';
 
-  // Antworten mischen und rendern
   const shuffledAnswers = shuffle(q.answers);
   const grid = document.getElementById('answers-grid');
   grid.innerHTML = '';
-
   shuffledAnswers.forEach((answer, idx) => {
     const btn = document.createElement('button');
     btn.className = 'answer-btn';
@@ -843,8 +1084,7 @@ function renderQuestion() {
     grid.appendChild(btn);
   });
 
-  // Scroll: nach oben damit Frage sichtbar
-  document.getElementById('quiz-anchor').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.getElementById('quiz-anchor').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 function handleAnswer(clickedBtn, isCorrect, shuffledAnswers) {
@@ -853,7 +1093,7 @@ function handleAnswer(clickedBtn, isCorrect, shuffledAnswers) {
   allBtns.forEach(b => b.disabled = true);
 
   const q = questions[currentQ];
-  const correctAnswerText = shuffledAnswers.find(a => a.correct).text;
+  const correctText = shuffledAnswers.find(a => a.correct).text;
 
   allBtns.forEach(b => {
     if (b.dataset.isCorrect === '1') {
@@ -869,12 +1109,12 @@ function handleAnswer(clickedBtn, isCorrect, shuffledAnswers) {
     if (streak > maxStreak) maxStreak = streak;
     feedback.innerHTML = `<strong>✅ Richtig!</strong><br>${q.fact}`;
     feedback.className = 'feedback visible fb-correct';
-    results.push({ q: q.q, correct: true, correctText: correctAnswerText });
+    results.push({ q:q.q, correct:true, correctText });
   } else {
     streak = 0;
-    feedback.innerHTML = `<strong>❌ Falsch!</strong> Richtig: <strong>${correctAnswerText}</strong><br><br>${q.fact}`;
+    feedback.innerHTML = `<strong>❌ Falsch!</strong> Richtig: <strong>${correctText}</strong><br><br>${q.fact}`;
     feedback.className = 'feedback visible fb-wrong';
-    results.push({ q: q.q, correct: false, correctText: correctAnswerText });
+    results.push({ q:q.q, correct:false, correctText });
   }
 
   document.getElementById('score-display').textContent = score;
@@ -883,10 +1123,7 @@ function handleAnswer(clickedBtn, isCorrect, shuffledAnswers) {
   nextBtn.className = 'next-btn visible';
   nextBtn.textContent = currentQ < questions.length - 1 ? 'WEITER →' : 'ERGEBNIS →';
 
-  // Scroll zum Feedback
-  setTimeout(() => {
-    feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }, 80);
+  setTimeout(() => feedback.scrollIntoView({ behavior:'smooth', block:'nearest' }), 80);
 }
 
 function nextQuestion() {
@@ -932,30 +1169,33 @@ function showResult() {
   } else {
     missedEl.style.display = 'none';
   }
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
-// Abbruch-Dialog
-function confirmAbort() {
-  document.getElementById('abort-overlay').classList.add('visible');
-}
-function closeAbort() {
-  document.getElementById('abort-overlay').classList.remove('visible');
-}
+// Abbrechen-Dialog
+function confirmAbort() { document.getElementById('abort-overlay').classList.add('visible'); }
+function closeAbort()   { document.getElementById('abort-overlay').classList.remove('visible'); }
 function doAbort() {
   document.getElementById('abort-overlay').classList.remove('visible');
   document.getElementById('quiz-screen').style.display = 'none';
-  document.getElementById('start-screen').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (currentMode === 'club') {
+    document.getElementById('club-screen').style.display = 'block';
+  } else {
+    document.getElementById('start-screen').style.display = 'block';
+  }
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
 
 function goToMenu() {
   document.getElementById('result-screen').style.display = 'none';
   document.getElementById('start-screen').style.display = 'block';
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top:0, behavior:'smooth' });
 }
-function restartQuiz() { startQuiz(); }
+
+function replayQuiz() {
+  if (currentMode === 'club' && selectedClub) startClubQuiz(selectedClub);
+  else startGeneralQuiz();
+}
 </script>
 </body>
 </html>
